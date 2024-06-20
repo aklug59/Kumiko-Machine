@@ -13,7 +13,7 @@ public class CutterHead {
 //.1125
     static double steps = 0;
 
-    final static double stepsPerDegree = 4.0;
+    final static double stepsPerDegree = 8.8888;
     static ArduinoFacade ardFac;
 
     public CutterHead(ArduinoFacade ardFac) {
