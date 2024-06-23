@@ -3,18 +3,17 @@ package CoreLogic;
 /*
 * 800ms delay seems to me minimum functional threshold where the serial on the arduino isn't skipping reads
 *
-*
-* */
+*/
 public class CutterHead {
     private static double currAngle = 90;
     private static int motorDirection = 0;
     private static int steps = 0;
     final static char initilizer = 1;
     final static double stepsPerDegree = 8.8888;
-    static ArduinoFacade ardFac;
+    static ArduinoInterface ardFac;
 
 
-    public CutterHead(ArduinoFacade ardFac) {
+    public CutterHead(ArduinoInterface ardFac) {
         this.ardFac = ardFac;
     }
 
@@ -42,7 +41,7 @@ public class CutterHead {
         Thread.sleep(800);
         steps = (int)Math.round(Math.abs((currAngle - angle) * stepsPerDegree));
         currAngle = angle;
-        ardFac.cutter(steps);
+        ardFac.stepAmount(steps);
 
     }
 }

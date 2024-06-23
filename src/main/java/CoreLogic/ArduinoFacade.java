@@ -3,7 +3,7 @@ package CoreLogic;
 import arduino.Arduino;
 
 import java.util.Scanner;
-public class ArduinoFacade {
+public class ArduinoFacade implements ArduinoInterface {
     Scanner ob = new Scanner(System.in);
     private final Arduino arduino = new Arduino("COM7", 9600); //enter the port name here, and ensure that Arduino is connected, otherwise exception will be thrown.
 
@@ -16,7 +16,7 @@ public class ArduinoFacade {
         arduino.closeConnection();
     }
 
-    public void cutter(int steps) {
+    public void stepAmount(int steps) {
         String stringAngle = String.valueOf(steps);
         arduino.serialWrite(stringAngle);
     }

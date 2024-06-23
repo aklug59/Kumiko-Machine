@@ -10,7 +10,7 @@ public class CutterHeadExample {
         ardFac.openConnection();
         ardFac.initial(1);
         Thread.sleep(1000);
-        ardFac.cutter(675);
+        ardFac.stepAmount(675);
         String x = ardFac.read();
         System.out.println(x);
 
