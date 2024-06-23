@@ -1,33 +1,32 @@
 #define stepPin 7
 #define dirPin 2
 int steps;
+int command;
+int stepperCommand = 1;
+int direction = 0;
 
 void setup() {
   pinMode(stepPin, OUTPUT);
-  pinMode(dirPin, OUTPUT);  
+  pinMode(dirPin, OUTPUT);
   Serial.begin(9600);
-
 }
 
 void loop() {
 
   while (Serial.available() > 0) {
-    int command = Serial.parseInt();
+    command = Serial.parseInt();
 
-    if (command = 1) {
+    if (command == stepperCommand) {
 
-      int direction = Serial.parseInt();
+      direction = Serial.parseInt();
 
        //set motor direction
       if (direction > 0) {
         pinMode(dirPin, INPUT);
-        Serial.print("ONE");
-
 
       } else {
         pinMode(dirPin, OUTPUT);
         digitalWrite(dirPin,HIGH);
-        Serial.print("Two");
       }
 
       steps = Serial.parseInt();
@@ -38,8 +37,6 @@ void loop() {
         digitalWrite(stepPin, LOW);
         delayMicroseconds(1000);
       }
-
     }
-
   }
 }

@@ -1,50 +1,48 @@
 package CoreLogic;
 
-import CoreLogic.ArduinoFacade;
-
 /*
 * 800ms delay seems to me minimum functional threshold where the serial on the arduino isn't skipping reads
 *
 *
 * */
 public class CutterHead {
-    static double currAngle = 90;
-    static int motorDirection = 0;
-//.1125
-    static double steps = 0;
-
+    private static double currAngle = 90;
+    private static int motorDirection = 0;
+    private static int steps = 0;
+    final static char initilizer = 1;
     final static double stepsPerDegree = 8.8888;
     static ArduinoFacade ardFac;
+
 
     public CutterHead(ArduinoFacade ardFac) {
         this.ardFac = ardFac;
     }
 
     public static void setAngle(double angle) throws InterruptedException {
-        System.out.println("The starting currAngle is " + currAngle);
 
+        /*Send the arduino an integer indicating StepperMotor vs.
+        actuator control. 1 = StepperMotor, 2 = actuator. */
+        ardFac.initial(initilizer);
+
+        // Set motor direction based on current angle.
         if (angle < currAngle) {
             motorDirection = -1;
         }
         else if (angle > currAngle){
             motorDirection = 1;
         } else if (angle == currAngle) {
+            //Warn the user that the same angle is being used. Implement in GUI once written.
             System.out.println("This is the same angle!");
         }
-        ardFac.initial(1);
+
+        /*Send the arduino the motor direction followed by the number of steps to move. Sleep 800ms between both
+          to allow arduino to process. */
         Thread.sleep(800);
         ardFac.initial(motorDirection);
         Thread.sleep(800);
-        steps = Math.abs((currAngle - angle) * stepsPerDegree);
-        int intSteps = (int)Math.round(steps);
+        steps = (int)Math.round(Math.abs((currAngle - angle) * stepsPerDegree));
         currAngle = angle;
-        System.out.println("The currAngle is " + currAngle);
-        ardFac.cutter(intSteps);
-        String x = ardFac.read();
-        System.out.println(x);
+        ardFac.cutter(steps);
 
     }
-
-
-
 }
