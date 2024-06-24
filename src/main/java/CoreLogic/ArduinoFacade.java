@@ -4,6 +4,7 @@ import arduino.Arduino;
 
 import java.util.Scanner;
 public class ArduinoFacade implements ArduinoInterface {
+    public static String currentState = "Closed";
     Scanner ob = new Scanner(System.in);
     private final Arduino arduino = new Arduino("COM7", 9600); //enter the port name here, and ensure that Arduino is connected, otherwise exception will be thrown.
 

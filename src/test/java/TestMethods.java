@@ -5,7 +5,7 @@ public class TestMethods {
     public void Stepper() throws InterruptedException {
         ArduinoFacade ardFac = new ArduinoFacade();
         ardFac.openConnection();
-        CutterHead testCutter = new CutterHead(ardFac);
+        CutterHead testCutter = new CutterHead();
         testCutter.setAngle(0);
         Thread.sleep(3000);
         testCutter.setAngle(90);

@@ -1,5 +1,7 @@
 package CoreLogic;
 
+import static CoreLogic.ArduinoFacade.currentState;
+
 /*
 * 800ms delay seems to me minimum functional threshold where the serial on the arduino isn't skipping reads
 *
@@ -10,14 +12,17 @@ public class CutterHead {
     private static int steps = 0;
     final static char initilizer = 1;
     final static double stepsPerDegree = 8.8888;
-    static ArduinoInterface ardFac;
+    static ArduinoInterface ardFac = new ArduinoFacade();
 
 
-    public CutterHead(ArduinoInterface ardFac) {
-        this.ardFac = ardFac;
-    }
+    public CutterHead() {}
 
     public static void setAngle(double angle) throws InterruptedException {
+        //If a connection between the computer and the Arduino has not yet been made, make it.
+        if (currentState.equals("Closed")) {
+            ardFac.openConnection();
+            currentState = "Open";
+        }
 
         /*Send the arduino an integer indicating StepperMotor vs.
         actuator control. 1 = StepperMotor, 2 = actuator. */
