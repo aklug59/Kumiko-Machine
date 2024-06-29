@@ -10,6 +10,8 @@ public interface ArduinoInterface {
 
     public void closeConnection();
 
+    public void newPosition(int position);
+
     public String read();
 
 }

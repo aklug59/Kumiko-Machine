@@ -2,11 +2,13 @@ package examples;
 
 import CoreLogic.ArduinoFacade;
 
+import static CoreLogic.ArduinoFacade.getArduinoFacade;
+
 public class CutterHeadExample {
 
     public static void main(String[] args) throws InterruptedException {
 
-        ArduinoFacade ardFac = new ArduinoFacade();
+        ArduinoFacade ardFac = getArduinoFacade();
         ardFac.openConnection();
         ardFac.initial(1);
         Thread.sleep(1000);

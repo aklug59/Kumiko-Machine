@@ -3,15 +3,17 @@ public class MockArduino {
     int dirPin = 2;
     int steps;
     int command;
+    int position;
     int stepperCommand = 1;
     int actuatorCommand = 2;
     int direction = 0;
     int numSteps;
 
-    public MockArduino (int command, int direction, int steps) {
+    public MockArduino (int command, int direction, int steps, int position) {
         this.command = command;
         this.direction = direction;
         this.steps = steps;
+        this.position = position;
     }
 
     public void mockStepper() {
@@ -39,6 +41,7 @@ public class MockArduino {
         if (command == actuatorCommand) {
             System.out.println("Actuator command recieved");
         }
+        System.out.println("The position is " + position);
     }
 
     }

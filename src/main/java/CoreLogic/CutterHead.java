@@ -1,6 +1,7 @@
 package CoreLogic;
 
 import static CoreLogic.ArduinoFacade.currentState;
+import static CoreLogic.ArduinoFacade.getArduinoFacade;
 
 /*
 * 800ms delay seems to me minimum functional threshold where the serial on the arduino isn't skipping reads
@@ -12,7 +13,7 @@ public class CutterHead {
     private static int steps = 0;
     final static char initilizer = 1;
     final static double stepsPerDegree = 8.8888;
-    static ArduinoInterface ardFac = new ArduinoFacade();
+    static ArduinoInterface ardFac = getArduinoFacade();
 
 
     public CutterHead() {}

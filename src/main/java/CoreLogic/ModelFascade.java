@@ -11,6 +11,8 @@ public class ModelFascade {
     private ModelFascade() {}
     private CutterHead CutterHead = new CutterHead();
 
+    private Actuator Actuator = new Actuator();
+
     public static ModelFascade getModelFascade() {
         if (ModelFascade.modelFascadeInstance == null) {
             modelFascadeInstance = new ModelFascade();
@@ -21,6 +23,10 @@ public class ModelFascade {
 
     public void changeAngle(double newAngle) throws InterruptedException {
         CutterHead.setAngle(newAngle);
+    }
+
+    public void changePosition(int position) throws InterruptedException {
+        Actuator.setPosition(position);
     }
 
 

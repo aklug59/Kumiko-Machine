@@ -27,4 +27,8 @@ public class Adapter {
         adapterLocalModelFascade.changeAngle(newAngle);
     }
 
+    public void positionUpdate(int newPosition) throws InterruptedException {
+        adapterLocalModelFascade.changePosition(newPosition);
+    }
+
 }
