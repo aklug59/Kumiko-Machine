@@ -29,5 +29,34 @@ public class ModelFascade {
         Actuator.setPosition(position);
     }
 
+    public void changePieceLength(double length, String value) {
+
+        switch(value) {
+            case "start":
+                Piece.startingLength = length;
+                if (Piece.currLength == -1) {
+                    Piece.currLength = length;
+                }
+                break;
+            case "current":
+                Piece.currLength = length;
+                break;
+            case "target":
+                Piece.targetLength = length;
+                break;
+            default:
+                // code block
+        }
+
+
+        if (value.equals("start")) {
+            Piece.startingLength = length;
+        } else {
+            Piece.targetLength = length;
+        }
+
+
+    }
+
 
     }
