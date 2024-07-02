@@ -48,13 +48,19 @@ public class ModelFascade {
                 // code block
         }
 
-
         if (value.equals("start")) {
             Piece.startingLength = length;
         } else {
             Piece.targetLength = length;
         }
+    }
 
+    public void startTimer() {
+        ProjectTimer.startTimer();
+    }
+
+    public void updateTime() {
+        ModelFascadeLocalAdapter.updateTime();
 
     }
 

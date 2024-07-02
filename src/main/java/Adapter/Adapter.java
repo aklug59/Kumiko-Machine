@@ -36,4 +36,13 @@ public class Adapter {
 
     }
 
+    public void updateTime() {
+        adapterLocalGUI.updateTime();
+
+    }
+
+    public void startTimer() {
+        adapterLocalModelFascade.startTimer();
+    }
+
 }

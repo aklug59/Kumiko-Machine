@@ -34,5 +34,13 @@ public class TextFieldFactory {
         GUI.targetLengthTextField.setBounds(700,400, 150,50);
         GUI.targetLengthTextField.setHorizontalAlignment(JTextField.CENTER);
         GUI.targetLengthTextField.addActionListener(GUI.guiInstance);
+
+        //Make piece time text field
+        GUI.pieceTimeTextField.setText("0");
+        GUI.pieceTimeTextField.setBounds(200,400, 150,50);
+        GUI.pieceTimeTextField.setHorizontalAlignment(JTextField.CENTER);
+        GUI.pieceTimeTextField.addActionListener(GUI.guiInstance);
+
+
     }
 }

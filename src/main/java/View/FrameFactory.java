@@ -15,6 +15,7 @@ public class FrameFactory {
         GUI.frame.add(GUI.angleTextField);
         GUI.frame.add(GUI.anglePlusButton);
         GUI.frame.add(GUI.angleMinusButton);
+        GUI.frame.add(GUI.pieceTimeTextField);
 
         GUI.frame.add(GUI.positionLabel);
         GUI.frame.add(GUI.positionTextField);

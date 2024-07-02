@@ -13,13 +13,15 @@ import java.awt.event.KeyListener;
 
 
 public class GUI implements ActionListener, KeyListener {
-    protected static JFrame frame = new JFrame();
+    protected static GUI guiInstance = new GUI();
     private Adapter guiLocalAdapter = getAdapter();
+    protected static JFrame frame = new JFrame();
     protected static JTextField angleTextField = new JTextField(1);
     protected static JTextField positionTextField = new JTextField(1);
     protected static JTextField startingLengthTextField = new JTextField("Enter Length!");
     protected static JTextField currLengthTextField = new JTextField("");
     protected static JTextField targetLengthTextField = new JTextField("");
+    protected static JTextField pieceTimeTextField = new JTextField("");
     protected static JButton anglePlusButton = new JButton("+ .5°");
     protected static JButton angleMinusButton = new JButton("- .5°");
     protected static JButton positionPlusButton = new JButton("+");
@@ -30,12 +32,12 @@ public class GUI implements ActionListener, KeyListener {
     protected static JLabel currentLengthLabel = new JLabel("Current Length");
     protected static JLabel targetLengthLabel = new JLabel("Target Length");
     protected static Font boldFont = new Font("BOLD",Font.BOLD, anglePlusButton.getFont().getSize());
-    protected static GUI guiInstance = new GUI();
     protected static double currAngle = 90;
     protected static int currPosition = 0;
     double startingLength;
     double currLength;
     double targetLength;
+    int currTime = 0;
 
     private GUI() {};
 
@@ -93,6 +95,13 @@ public class GUI implements ActionListener, KeyListener {
     public double getCutLength() {
         double postCutPieceLength = 2.806 - (.010064453125 * currPosition);
         return postCutPieceLength;
+    }
+
+    public void updateTime() {
+        String currTimeString;
+        currTime++;
+        currTimeString = String.valueOf(currTime);
+        pieceTimeTextField.setText(currTimeString);
     }
 
 @Override
@@ -174,15 +183,14 @@ public void keyPressed(KeyEvent e) {
 
     //Inform the model a cut has been made and update the piece object and GUI accordingly.
     if (currKey == KeyEvent.VK_C) {
-        System.out.println("You triggered a cut!");
-        System.out.println("the currPosition is " + currPosition);
-        currLengthTextField.setText(String.valueOf(getCutLength()));
+        currLength = getCutLength();
+        currLengthTextField.setText(String.valueOf(currLength));
         guiLocalAdapter.updatePiece(getCutLength(), "current");
     }
 
     //Save the current piece and make a new one.
     if (currKey == KeyEvent.VK_N) {
-
+        guiLocalAdapter.startTimer();
 
     }
 
