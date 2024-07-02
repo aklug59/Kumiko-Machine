@@ -13,26 +13,26 @@ import java.awt.event.KeyListener;
 
 
 public class GUI implements ActionListener, KeyListener {
-    JFrame frame = new JFrame();
+    protected static JFrame frame = new JFrame();
     private Adapter guiLocalAdapter = getAdapter();
-    JTextField angleTextField = new JTextField(1);
-    JTextField positionTextField = new JTextField(1);
-    JTextField startingLengthTextField = new JTextField("Enter Length!");
-    JTextField currLengthTextField = new JTextField("");
-    JTextField targetLengthTextField = new JTextField("");
-    JButton anglePlusButton = new JButton("+ .5°");
-    JButton angleMinusButton = new JButton("- .5°");
-    JButton positionPlusButton = new JButton("+");
-    JButton positionMinusButton = new JButton("-");
-    JLabel angleLabel = new JLabel("Current Angle");
-    JLabel positionLabel = new JLabel("Current Position");
-    JLabel startingLengthLabel = new JLabel("Starting Length");
-    JLabel currentLengthLabel = new JLabel("Current Length");
-    JLabel targetLengthLabel = new JLabel("Target Length");
-    Font boldFont = new Font("BOLD",Font.BOLD, anglePlusButton.getFont().getSize());
-    private static GUI guiInstance = new GUI();
-    double currAngle = 90;
-    int currPosition = 0;
+    protected static JTextField angleTextField = new JTextField(1);
+    protected static JTextField positionTextField = new JTextField(1);
+    protected static JTextField startingLengthTextField = new JTextField("Enter Length!");
+    protected static JTextField currLengthTextField = new JTextField("");
+    protected static JTextField targetLengthTextField = new JTextField("");
+    protected static JButton anglePlusButton = new JButton("+ .5°");
+    protected static JButton angleMinusButton = new JButton("- .5°");
+    protected static JButton positionPlusButton = new JButton("+");
+    protected static JButton positionMinusButton = new JButton("-");
+    protected static JLabel angleLabel = new JLabel("Current Angle");
+    protected static JLabel positionLabel = new JLabel("Current Position");
+    protected static JLabel startingLengthLabel = new JLabel("Starting Length");
+    protected static JLabel currentLengthLabel = new JLabel("Current Length");
+    protected static JLabel targetLengthLabel = new JLabel("Target Length");
+    protected static Font boldFont = new Font("BOLD",Font.BOLD, anglePlusButton.getFont().getSize());
+    protected static GUI guiInstance = new GUI();
+    protected static double currAngle = 90;
+    protected static int currPosition = 0;
     double startingLength;
     double currLength;
     double targetLength;
@@ -48,118 +48,10 @@ public class GUI implements ActionListener, KeyListener {
 
     public static void populateGUI() {
 
-        guiInstance.makeTextfields();
-        guiInstance.makeButtons();
-        guiInstance.makeLabels();
-
-        guiInstance.makeFrame();
-
-    }
-
-    public void makeFrame() {
-        frame.setSize(1000,1000);
-        frame.setLayout(null);
-        frame.setVisible(true);
-        frame.setFocusable(true);
-        frame.addKeyListener(this);
-        frame.add(angleLabel);
-        frame.add(angleTextField);
-        frame.add(anglePlusButton);
-        frame.add(angleMinusButton);
-
-
-        frame.add(positionLabel);
-        frame.add(positionTextField);
-        frame.add(positionPlusButton);
-        frame.add(positionMinusButton);
-
-        frame.add(startingLengthTextField);
-        frame.add(currLengthTextField);
-        frame.add(targetLengthTextField);
-
-        frame.add(startingLengthLabel);
-        frame.add(currentLengthLabel);
-        frame.add(targetLengthLabel);
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-    public void makeButtons() {
-
-        // Make angle buttons
-        angleMinusButton.setBounds(425,400,65,50);
-        anglePlusButton.setBounds(560,400,65,50);
-
-        angleMinusButton.setFont(boldFont);
-        anglePlusButton.setFont(boldFont);
-
-        angleMinusButton.addActionListener(guiInstance);
-        anglePlusButton.addActionListener(guiInstance);
-
-
-        // Make position buttons
-        positionMinusButton.setBounds(425,300,65,50);
-        positionPlusButton.setBounds(560,300,65,50);
-
-        positionMinusButton.setFont(boldFont);
-        positionPlusButton.setFont(boldFont);
-
-        positionMinusButton.addActionListener(guiInstance);
-        positionPlusButton.addActionListener(guiInstance);
-
-    }
-
-    public void makeTextfields() {
-        // Make angle field
-        angleTextField.setText(String.valueOf(currAngle));
-        angleTextField.setBounds(500,400, 50,50);
-        angleTextField.setHorizontalAlignment(JTextField.CENTER);
-        angleTextField.addActionListener(guiInstance);
-        // Make position field
-        positionTextField.setText(String.valueOf(currPosition));
-        positionTextField.setBounds(500,300, 50,50);
-        positionTextField.setHorizontalAlignment(JTextField.CENTER);
-        positionTextField.addActionListener(guiInstance);
-
-        // Make starting length text field
-        startingLengthTextField.setText("0");
-        startingLengthTextField.setBounds(700,200, 150,50);
-        startingLengthTextField.setHorizontalAlignment(JTextField.CENTER);
-        startingLengthTextField.addActionListener(guiInstance);
-
-        // Make current length text field
-        currLengthTextField.setText("0");
-        currLengthTextField.setBounds(700,300, 150,50);
-        currLengthTextField.setHorizontalAlignment(JTextField.CENTER);
-        currLengthTextField.addActionListener(guiInstance);
-
-        // Make target length text field
-        targetLengthTextField.setText("0");
-        targetLengthTextField.setBounds(700,400, 150,50);
-        targetLengthTextField.setHorizontalAlignment(JTextField.CENTER);
-        targetLengthTextField.addActionListener(guiInstance);
-
-
-
-    }
-
-    public void makeLabels() {
-
-        angleLabel.setBounds(485,335,100,100);
-        angleLabel.setVisible(true);
-
-        positionLabel.setBounds(485,235, 100,100);
-        positionLabel.setVisible(true);
-
-        startingLengthLabel.setBounds(725,125,100,100);
-        startingLengthLabel.setVisible(true);
-
-        currentLengthLabel.setBounds(725,225,100,100);
-        currentLengthLabel.setVisible(true);
-
-        targetLengthLabel.setBounds(725,325,100,100);
-        targetLengthLabel.setVisible(true);
-
+        TextFieldFactory.makeTextFields();
+        ButtonFactory.makeButtons();
+        LabelFactory.makeLabels();
+        FrameFactory.makeFrame();
 
     }
 
