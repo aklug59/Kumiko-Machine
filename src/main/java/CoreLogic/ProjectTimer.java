@@ -21,10 +21,8 @@ public class ProjectTimer {
     public ProjectTimer() {}
 
     protected static void startTimer() {
-        System.out.println("We got here!");
         startTime = System.currentTimeMillis();
         projectTimer.schedule(guiTimeUpdate, 0,1000);
-        //projectTimer.schedule(guiTimeUpdate,startTime,1000);
     }
 
     protected void stopTimer() {
@@ -37,13 +35,5 @@ public class ProjectTimer {
     
     protected static void GUITimeUpdate() {
         projectTimerLocalModelFacade.updateTime();
-        System.out.println("Tick!");
-
-
     }
-
-
-
-
-
 }

@@ -38,6 +38,8 @@ public class GUI implements ActionListener, KeyListener {
     double currLength;
     double targetLength;
     int currTime = 0;
+    private final double strokeLength = 2.806;
+    private final double inchPerStep = .010064453125;
 
     private GUI() {};
 
@@ -93,7 +95,7 @@ public class GUI implements ActionListener, KeyListener {
         }
     }
     public double getCutLength() {
-        double postCutPieceLength = 2.806 - (.010064453125 * currPosition);
+        double postCutPieceLength = strokeLength - (inchPerStep * currPosition);
         return postCutPieceLength;
     }
 

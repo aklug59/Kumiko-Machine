@@ -20,7 +20,6 @@ public class ArduinoFacade implements ArduinoInterface {
         return arduinoFascadeInstance;
     }
 
-
     public void openConnection() {
         arduino.openConnection();
     }
@@ -48,6 +47,5 @@ public class ArduinoFacade implements ArduinoInterface {
     public String read() {
         return arduino.serialRead();
     }
-
 
 }

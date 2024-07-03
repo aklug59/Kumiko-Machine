@@ -9,10 +9,10 @@ import static View.GUI.getGUI;
 public class Adapter {
 
     private static Adapter adapterInstance;
-    private static GUI adapterLocalGUI = getGUI();
-    private static ModelFascade adapterLocalModelFascade = getModelFascade();
+    private static final GUI adapterLocalGUI = getGUI();
+    private static final ModelFascade adapterLocalModelFascade = getModelFascade();
 
-
+    // Singleton pattern adapter constructor and getAdapter method
     private Adapter() {}
 
     public static Adapter getAdapter() {
@@ -35,7 +35,6 @@ public class Adapter {
         adapterLocalModelFascade.changePieceLength(length, value);
 
     }
-
     public void updateTime() {
         adapterLocalGUI.updateTime();
 
