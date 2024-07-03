@@ -5,13 +5,11 @@ import java.util.TimerTask;
 public class ProjectTimer {
 
     protected static long startTime;
-    protected long endTime;
+    protected static long endTime;
 
-    private static ModelFascade projectTimerLocalModelFacade = ModelFascade.getModelFascade();
+    private static final ModelFascade projectTimerLocalModelFacade = ModelFascade.getModelFascade();
 
-    private static Timer projectTimer = new Timer();
-
-    public static TimerTask guiTimeUpdate = new TimerTask() {
+    public static TimerTask guiTimerTask = new TimerTask() {
         @Override
         public void run() {
             ProjectTimer.GUITimeUpdate();
@@ -20,18 +18,28 @@ public class ProjectTimer {
 
     public ProjectTimer() {}
 
-    protected static void startTimer() {
-        startTime = System.currentTimeMillis();
-        projectTimer.schedule(guiTimeUpdate, 0,1000);
-    }
 
-    protected void stopTimer() {
+    protected static void stopTimer() {
+        guiTimerTask.cancel();
         endTime = System.currentTimeMillis();
     }
 
-    protected long getPieceTime() {
+    protected static long getPieceTime() {
         return endTime - startTime;
     }
+
+    protected static void resetTimer() {
+        startTime = System.currentTimeMillis();
+        Timer projectTimer = new Timer();
+        guiTimerTask = new TimerTask() {
+            @Override
+            public void run() {
+                ProjectTimer.GUITimeUpdate();
+            }
+        };
+        projectTimer.schedule(guiTimerTask, 0,1000);
+    }
+
     
     protected static void GUITimeUpdate() {
         projectTimerLocalModelFacade.updateTime();

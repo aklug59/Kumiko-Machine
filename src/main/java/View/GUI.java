@@ -31,6 +31,7 @@ public class GUI implements ActionListener, KeyListener {
     protected static JLabel startingLengthLabel = new JLabel("Starting Length");
     protected static JLabel currentLengthLabel = new JLabel("Current Length");
     protected static JLabel targetLengthLabel = new JLabel("Target Length");
+    protected static JLabel timeLabel = new JLabel("Elapsed Time:");
     protected static Font boldFont = new Font("BOLD",Font.BOLD, anglePlusButton.getFont().getSize());
     protected static double currAngle = 90;
     protected static int currPosition = 0;
@@ -38,6 +39,7 @@ public class GUI implements ActionListener, KeyListener {
     double currLength;
     double targetLength;
     int currTime = 0;
+    boolean firstCut = false;
     private final double strokeLength = 2.806;
     private final double inchPerStep = .010064453125;
 
@@ -56,7 +58,6 @@ public class GUI implements ActionListener, KeyListener {
         ButtonFactory.makeButtons();
         LabelFactory.makeLabels();
         FrameFactory.makeFrame();
-
     }
 
     public void nudgeAngle(int direction) throws InterruptedException {
@@ -104,6 +105,14 @@ public class GUI implements ActionListener, KeyListener {
         currTime++;
         currTimeString = String.valueOf(currTime);
         pieceTimeTextField.setText(currTimeString);
+    }
+
+    public void resetPieceValues() {
+        startingLengthTextField.setText("0");
+        currLengthTextField.setText("0");
+        targetLengthTextField.setText("0");
+        pieceTimeTextField.setText("0");
+        currTime = 0;
     }
 
 @Override
@@ -185,6 +194,10 @@ public void keyPressed(KeyEvent e) {
 
     //Inform the model a cut has been made and update the piece object and GUI accordingly.
     if (currKey == KeyEvent.VK_C) {
+        if (!firstCut) {
+            guiLocalAdapter.startTimer();
+            firstCut = true;
+        }
         currLength = getCutLength();
         currLengthTextField.setText(String.valueOf(currLength));
         guiLocalAdapter.updatePiece(getCutLength(), "current");
@@ -192,10 +205,13 @@ public void keyPressed(KeyEvent e) {
 
     //Save the current piece and make a new one.
     if (currKey == KeyEvent.VK_N) {
-        guiLocalAdapter.startTimer();
-
+        if (!firstCut) {
+            System.out.println("There is no piece to save!");
+        } else {
+            guiLocalAdapter.savePiece();
+            resetPieceValues();
+        }
     }
-
 }
 @Override
 public void keyReleased(KeyEvent e) {}

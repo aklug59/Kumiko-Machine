@@ -29,6 +29,7 @@ public class FrameFactory {
         GUI.frame.add(GUI.startingLengthLabel);
         GUI.frame.add(GUI.currentLengthLabel);
         GUI.frame.add(GUI.targetLengthLabel);
+        GUI.frame.add(GUI.timeLabel);
 
         GUI.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

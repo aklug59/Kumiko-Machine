@@ -40,6 +40,10 @@ public class Adapter {
 
     }
 
+    public void savePiece() {
+        adapterLocalModelFascade.savePiece();
+    }
+
     public void startTimer() {
         adapterLocalModelFascade.startTimer();
     }

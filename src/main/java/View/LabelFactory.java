@@ -18,5 +18,10 @@ public class LabelFactory {
 
         GUI.targetLengthLabel.setBounds(725,325,100,100);
         GUI.targetLengthLabel.setVisible(true);
+
+        GUI.pieceTimeTextField.setBounds(200,400, 150,50);
+
+        GUI.timeLabel.setBounds(235, 360,100,50);
+        GUI.timeLabel.setVisible(true);
     }
 }

@@ -34,9 +34,6 @@ public class ModelFascade {
         switch(value) {
             case "start":
                 Piece.startingLength = length;
-                if (Piece.currLength == -1) {
-                    Piece.currLength = length;
-                }
                 break;
             case "current":
                 Piece.currLength = length;
@@ -44,23 +41,30 @@ public class ModelFascade {
             case "target":
                 Piece.targetLength = length;
                 break;
-            default:
-                // code block
-        }
-
-        if (value.equals("start")) {
-            Piece.startingLength = length;
-        } else {
-            Piece.targetLength = length;
         }
     }
 
     public void startTimer() {
-        ProjectTimer.startTimer();
+        ProjectTimer.resetTimer();
     }
+
 
     public void updateTime() {
         ModelFascadeLocalAdapter.updateTime();
+
+    }
+
+    public void savePiece() {
+            ProjectTimer.stopTimer();
+            float pieceConstructionTime = ProjectTimer.getPieceTime() / 1000f;
+            System.out.println("The time to make the piece was " + pieceConstructionTime);
+            ProjectTimer.resetTimer();
+            System.out.println("The starting length was " + Piece.startingLength);
+            System.out.println("The current length is " + Piece.currLength);
+            System.out.println("The target length was " + Piece.targetLength);
+            Piece.resetLengths();
+
+            //Add logic to save above piece information to xlsx file
 
     }
 

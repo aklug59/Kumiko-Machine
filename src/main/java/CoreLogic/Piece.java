@@ -8,5 +8,11 @@ public class Piece {
 
     public Piece() {}
 
+    public static void resetLengths() {
+        startingLength = -1;
+        currLength = -1;
+        targetLength = -1;
+    }
+
 
 }
