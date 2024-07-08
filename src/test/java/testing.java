@@ -1,3 +1,4 @@
+import CoreLogic.FileWriter;
 import CoreLogic.ProjectTimer;
 import View.GUI;
 
@@ -9,17 +10,12 @@ public class testing {
     static GUI thisGUI = GUI.getGUI();
 
     public static void main(String[] args) throws InterruptedException {
-        //FileReader.sheetRead();
-        /*populateGUI();
-        Actuator testAc = new Actuator();
-        testAc.setPosition(50);
-        Thread.sleep(10000);
-        testAc.setPosition(100);
-        Thread.sleep(10000);
-        testAc.setPosition(50);
-        Thread.sleep(10000);
-        testAc.setPosition(0);*/
-        GUI.populateGUI();
+        FileWriter.writePiece(1);
+        //FileWriter.writePiece(2);
+        //FileReader.getProjectName();
+        //populateGUI();
+
+        //GUI.populateGUI();
         //mockArd.mockActuator();
 
         //mockArd.mockStepper();

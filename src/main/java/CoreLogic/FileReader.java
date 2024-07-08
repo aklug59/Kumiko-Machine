@@ -14,7 +14,7 @@ public class FileReader {
     public static XSSFWorkbook currWorkbook;
     public static XSSFSheet currSheet;
     public static String getProjectName() {
-        {
+
             try {
                 currFile = new FileInputStream("C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx");
                 currWorkbook = new XSSFWorkbook(currFile);
@@ -39,7 +39,7 @@ public class FileReader {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
+
         return "Name not found";
     }
 
