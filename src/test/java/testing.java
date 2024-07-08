@@ -1,8 +1,6 @@
-
-import CoreLogic.*;
+import CoreLogic.FileReader;
+import CoreLogic.ProjectTimer;
 import View.GUI;
-
-import static View.GUI.populateGUI;
 
 
 public class testing {
@@ -12,6 +10,7 @@ public class testing {
     static GUI thisGUI = GUI.getGUI();
 
     public static void main(String[] args) throws InterruptedException {
+        FileReader.sheetRead();
         /*populateGUI();
         Actuator testAc = new Actuator();
         testAc.setPosition(50);
@@ -21,7 +20,7 @@ public class testing {
         testAc.setPosition(50);
         Thread.sleep(10000);
         testAc.setPosition(0);*/
-        populateGUI();
+        //GUI.populateGUI();
         //mockArd.mockActuator();
 
         //mockArd.mockStepper();
