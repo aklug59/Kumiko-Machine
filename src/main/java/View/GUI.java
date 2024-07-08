@@ -1,8 +1,6 @@
 package View;
 
 import Adapter.Adapter;
-import static Adapter.Adapter.getAdapter;
-
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,10 +9,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import static Adapter.Adapter.getAdapter;
+
 
 public class GUI implements ActionListener, KeyListener {
     protected static GUI guiInstance = new GUI();
-    private Adapter guiLocalAdapter = getAdapter();
+    protected static Adapter guiLocalAdapter = getAdapter();
     protected static JFrame frame = new JFrame();
     protected static JTextField angleTextField = new JTextField(1);
     protected static JTextField positionTextField = new JTextField(1);
@@ -32,6 +32,7 @@ public class GUI implements ActionListener, KeyListener {
     protected static JLabel currentLengthLabel = new JLabel("Current Length");
     protected static JLabel targetLengthLabel = new JLabel("Target Length");
     protected static JLabel timeLabel = new JLabel("Elapsed Time:");
+    protected static JLabel projectName = new JLabel("");
     protected static Font boldFont = new Font("BOLD",Font.BOLD, anglePlusButton.getFont().getSize());
     protected static double currAngle = 90;
     protected static int currPosition = 0;

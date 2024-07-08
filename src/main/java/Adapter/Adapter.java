@@ -48,4 +48,8 @@ public class Adapter {
         adapterLocalModelFascade.startTimer();
     }
 
+    public String getProjectName() {
+        return adapterLocalModelFascade.getProjectName();
+    }
+
 }

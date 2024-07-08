@@ -1,5 +1,7 @@
 package View;
 
+import static View.GUI.projectName;
+
 public class LabelFactory {
 
     public static void makeLabels() {
@@ -23,5 +25,11 @@ public class LabelFactory {
 
         GUI.timeLabel.setBounds(235, 360,100,50);
         GUI.timeLabel.setVisible(true);
+
+        String currName = GUI.guiLocalAdapter.getProjectName();
+        projectName.setText(currName);
+        projectName.setBounds(50,50,100,100);
+        projectName.setVisible(true);
+
     }
 }

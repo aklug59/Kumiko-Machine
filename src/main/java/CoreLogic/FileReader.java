@@ -13,7 +13,7 @@ public class FileReader {
     public static FileInputStream currFile;
     public static XSSFWorkbook currWorkbook;
     public static XSSFSheet currSheet;
-    public static void sheetRead() {
+    public static String getProjectName() {
         {
             try {
                 currFile = new FileInputStream("C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx");
@@ -25,13 +25,22 @@ public class FileReader {
                     Iterator<Cell> cellIterator = row.cellIterator();
                     while(cellIterator.hasNext()) {
                         Cell cell = cellIterator.next();
-                        System.out.println(cell.getStringCellValue());
+                        String currString = cell.getStringCellValue();
+                        //If the current cell is "Project Name", go down one row and get the first cell value
+                        if (currString.equals("Project Name")) {
+                            row = rowIterator.next();
+                            cellIterator = row.cellIterator();
+                            cell = cellIterator.next();
+                            currString = cell.getStringCellValue();
+                            return currString;
+                        }
                     }
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
+        return "Name not found";
     }
 
 

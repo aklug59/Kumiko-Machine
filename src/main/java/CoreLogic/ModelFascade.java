@@ -1,8 +1,8 @@
 package CoreLogic;
 
 import Adapter.Adapter;
+
 import static Adapter.Adapter.getAdapter;
-import static CoreLogic.CutterHead.setAngle;
 
 public class ModelFascade {
 
@@ -66,6 +66,10 @@ public class ModelFascade {
 
             //Add logic to save above piece information to xlsx file
 
+    }
+
+    public String getProjectName() {
+        return FileReader.getProjectName();
     }
 
 
