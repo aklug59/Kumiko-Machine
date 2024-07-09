@@ -2,6 +2,8 @@ import CoreLogic.FileWriter;
 import CoreLogic.ProjectTimer;
 import View.GUI;
 
+import java.io.FileNotFoundException;
+
 
 public class testing {
     static TestMethods tester = new TestMethods();
@@ -9,9 +11,8 @@ public class testing {
     static ProjectTimer testTimer = new ProjectTimer();
     static GUI thisGUI = GUI.getGUI();
 
-    public static void main(String[] args) throws InterruptedException {
-        FileWriter.writePiece(1);
-        //FileWriter.writePiece(2);
+    public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+          FileWriter.writePiece(1);
         //FileReader.getProjectName();
         //populateGUI();
 
