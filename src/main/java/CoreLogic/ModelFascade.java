@@ -2,6 +2,8 @@ package CoreLogic;
 
 import Adapter.Adapter;
 
+import java.io.FileNotFoundException;
+
 import static Adapter.Adapter.getAdapter;
 
 public class ModelFascade {
@@ -18,19 +20,11 @@ public class ModelFascade {
             modelFascadeInstance = new ModelFascade();
         }
         return modelFascadeInstance;
-
     }
-
-    public void changeAngle(double newAngle) throws InterruptedException {
-        CutterHead.setAngle(newAngle);
-    }
-
-    public void changePosition(int position) throws InterruptedException {
-        Actuator.setPosition(position);
-    }
+    public void changeAngle(double newAngle) throws InterruptedException { CutterHead.setAngle(newAngle); }
+    public void changePosition(int position) throws InterruptedException { Actuator.setPosition(position); }
 
     public void changePieceLength(double length, String value) {
-
         switch(value) {
             case "start":
                 Piece.startingLength = length;
@@ -47,30 +41,15 @@ public class ModelFascade {
     public void startTimer() {
         ProjectTimer.resetTimer();
     }
+    public void updateTime() { ModelFascadeLocalAdapter.updateTime(); }
 
-
-    public void updateTime() {
-        ModelFascadeLocalAdapter.updateTime();
-
-    }
-
-    public void savePiece() {
+    public void savePiece() throws FileNotFoundException {
             ProjectTimer.stopTimer();
             float pieceConstructionTime = ProjectTimer.getPieceTime() / 1000f;
-            System.out.println("The time to make the piece was " + pieceConstructionTime);
             ProjectTimer.resetTimer();
-            System.out.println("The starting length was " + Piece.startingLength);
-            System.out.println("The current length is " + Piece.currLength);
-            System.out.println("The target length was " + Piece.targetLength);
+            FileWriter.writePiece(Piece.startingLength,pieceConstructionTime);
             Piece.resetLengths();
-
-            //Add logic to save above piece information to xlsx file
-
     }
-
-    public String getProjectName() {
-        return FileReader.getProjectName();
-    }
-
+    public String getProjectName() { return FileReader.getProjectName(); }
 
     }

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
 
 import static Adapter.Adapter.getAdapter;
 
@@ -209,7 +210,11 @@ public void keyPressed(KeyEvent e) {
         if (!firstCut) {
             System.out.println("There is no piece to save!");
         } else {
-            guiLocalAdapter.savePiece();
+            try {
+                guiLocalAdapter.savePiece();
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
             resetPieceValues();
         }
     }

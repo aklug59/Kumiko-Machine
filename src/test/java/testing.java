@@ -1,8 +1,9 @@
-import CoreLogic.FileWriter;
 import CoreLogic.ProjectTimer;
 import View.GUI;
 
 import java.io.FileNotFoundException;
+
+import static View.GUI.populateGUI;
 
 
 public class testing {
@@ -12,13 +13,13 @@ public class testing {
     static GUI thisGUI = GUI.getGUI();
 
     public static void main(String[] args) throws InterruptedException, FileNotFoundException {
-        FileWriter.writePiece(1);
-        Thread.sleep(1000);
-        FileWriter.writePiece(1);
+        //FileWriter.writePiece(1,2);
+        //Thread.sleep(1000);
+        //FileWriter.writePiece(1,4);
 
 
         //FileReader.getProjectName();
-        //populateGUI();
+        populateGUI();
 
         //GUI.populateGUI();
         //mockArd.mockActuator();
