@@ -2,7 +2,6 @@ package CoreLogic;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -15,25 +14,22 @@ public class FileWriter {
 
     public static XSSFWorkbook tempWorkbook = new XSSFWorkbook();
     public static XSSFSheet currSheet;
-    public static int currBlankRowNumber = -1;
+    public static int currBlankRowNumber = 0;
 
     public static void writePiece(int startingLength) throws FileNotFoundException {
         try {
-            if (currBlankRowNumber == -1) {
+            //On the first write, the currBlankRowNumber will be 0. Call the findBlank cell method to populate the currBlankRowNumber
+            //With the first instance of an empty cell.
+            if (currBlankRowNumber == 0) {
                 findBlankCell();
-                System.out.println("The blank cell is " + currBlankRowNumber);
-                Sheet sheet = currWorkbook.createSheet("Test");
-                Row saveRow = sheet.createRow(3);
-                saveRow.setRowNum(currBlankRowNumber);
-                Cell cell = saveRow.createCell(3);
-                cell.setCellValue(43);
-                FileOutputStream outFile =new FileOutputStream(new File("C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx"));
-
-                currWorkbook.write(outFile);
-                outFile.close();
-            } else {
-                 System.out.println("Now we here");
             }
+            Row saveRow = currSheet.createRow(currBlankRowNumber);
+            Cell cell = saveRow.createCell(3);
+            cell.setCellValue(currBlankRowNumber + 1);
+            FileOutputStream outFile = new FileOutputStream(new File("C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx"));
+            currWorkbook.write(outFile);
+            currBlankRowNumber++;
+            outFile.close();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -47,17 +43,20 @@ public class FileWriter {
         currSheet = currWorkbook.getSheetAt(0);
         Cell cell;
 
-        if (currBlankRowNumber == -1) {
-            for (Row row : currSheet) {
-                cell = row.getCell(3);
-                if (cell.getStringCellValue().equals("")) {
-                    currBlankRowNumber = cell.getRowIndex();
-                    currInput.close();
-                }
+        for (Row row : currSheet) {
+            cell = row.getCell(3);
+            if (cell == null) {
+                break;
             }
-
-
+            Object cellType = cell.getCellType();
+            String cellString = String.valueOf(cellType);
+            System.out.println(cellString);
+            if (cellString.equals("STRING") || cellString.equals("NUMERIC")) {
+                currBlankRowNumber++;
+            } else {
+                currInput.close();
+                break;
+            }
         }
-
     }
 }

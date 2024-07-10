@@ -20,27 +20,14 @@ public class FileReader {
                 currWorkbook = new XSSFWorkbook(currFile);
                 currSheet = currWorkbook.getSheetAt(0);
                 Iterator<Row> rowIterator = currSheet.rowIterator();
-                while (rowIterator.hasNext()) {
-                    Row row = rowIterator.next();
-                    Iterator<Cell> cellIterator = row.cellIterator();
-                    while(cellIterator.hasNext()) {
-                        Cell cell = cellIterator.next();
-                        String currString = cell.getStringCellValue();
-                        //If the current cell is "Project Name", go down one row and get the first cell value
-                        if (currString.equals("Project Name")) {
-                            row = rowIterator.next();
-                            cellIterator = row.cellIterator();
-                            cell = cellIterator.next();
-                            currString = cell.getStringCellValue();
-                            return currString;
-                        }
-                    }
-                }
+
+                Row saveRow = currSheet.getRow(0);
+                Cell cell = saveRow.getCell(0);
+                return cell.getStringCellValue();
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-        return "Name not found";
     }
 
 

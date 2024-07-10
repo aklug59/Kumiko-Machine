@@ -12,7 +12,11 @@ public class testing {
     static GUI thisGUI = GUI.getGUI();
 
     public static void main(String[] args) throws InterruptedException, FileNotFoundException {
-          FileWriter.writePiece(1);
+        FileWriter.writePiece(1);
+        Thread.sleep(1000);
+        FileWriter.writePiece(1);
+
+
         //FileReader.getProjectName();
         //populateGUI();
 
