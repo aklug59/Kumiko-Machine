@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 
 import static Adapter.Adapter.getAdapter;
 
@@ -19,7 +20,7 @@ public class GUI implements ActionListener, KeyListener {
     protected static JFrame frame = new JFrame();
     protected static JTextField angleTextField = new JTextField(1);
     protected static JTextField positionTextField = new JTextField(1);
-    protected static JTextField startingLengthTextField = new JTextField("Enter Length!");
+    protected static JTextField startingLengthTextField = new JTextField();
     protected static JTextField currLengthTextField = new JTextField("");
     protected static JTextField targetLengthTextField = new JTextField("");
     protected static JTextField pieceTimeTextField = new JTextField("");
@@ -44,6 +45,8 @@ public class GUI implements ActionListener, KeyListener {
     boolean firstCut = false;
     private final double strokeLength = 2.806;
     private final double inchPerStep = .010064453125;
+
+    public static HashMap<Object, String> componentNames = new HashMap<Object, String>();
 
     private GUI() {};
 
@@ -97,6 +100,7 @@ public class GUI implements ActionListener, KeyListener {
             guiLocalAdapter.updatePosition(currPosition);
         }
     }
+
     public double getCutLength() {
         double postCutPieceLength = strokeLength - (inchPerStep * currPosition);
         return postCutPieceLength;
@@ -119,74 +123,82 @@ public class GUI implements ActionListener, KeyListener {
 
 @Override
     public void actionPerformed(ActionEvent e) {
-        Object currObject = e.getSource();
+        JComponent currObject = (JComponent) e.getSource();
+        String currName = String.valueOf(currObject.getName());
 
-        if (currObject == anglePlusButton) {
-            try {
-                nudgeAngle(1);
-                frame.requestFocusInWindow();
-            } catch (InterruptedException ex) {
-                 throw new RuntimeException(ex);
-            }
-        } else if (currObject == angleMinusButton) {
-            try {
-                nudgeAngle(-1);
-                frame.requestFocusInWindow();
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
-            }
-        } else if (currObject == positionPlusButton) {
-            try {
-                nudgePosition(1);
-                frame.requestFocusInWindow();
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
-            }
 
-        } else if (currObject == positionMinusButton) {
-            try {
-                nudgePosition(-1);
+        switch(currName) {
+            case "startingLengthTextField":
+                startingLength = Double.parseDouble(startingLengthTextField.getText());
                 frame.requestFocusInWindow();
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
-            }
-
-        } else if (currObject == positionTextField) {
-            currPosition = Integer.parseInt(positionTextField.getText());
-            if (currPosition > 0 || currPosition < 255) {
+                guiLocalAdapter.updatePiece(startingLength, "start");
+                break;
+            case "targetLengthTextField":
+                targetLength = Double.parseDouble(targetLengthTextField.getText());
+                frame.requestFocusInWindow();
+                guiLocalAdapter.updatePiece(targetLength, "target");
+                break;
+            case "currLengthTextField":
+                System.out.println("Do not touch!");
+                frame.requestFocusInWindow();
+                break;
+            case "anglePlusButton":
                 try {
-                    guiLocalAdapter.updatePosition(currPosition);
+                    nudgeAngle(1);
                     frame.requestFocusInWindow();
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }
-
-            }
-        } else if (currObject == angleTextField) {
-            currAngle = Double.parseDouble(angleTextField.getText());
-            if (currAngle > 90 || currAngle < 0) {
-                System.out.println("Enter a number between 0 and 90!");
-                frame.requestFocusInWindow();
-            } else {
-                angleTextField.getText();
-                frame.requestFocusInWindow();
+                break;
+            case "angleMinusButton":
                 try {
-                    guiLocalAdapter.angleUpdate(currAngle);
+                    nudgeAngle(-1);
+                    frame.requestFocusInWindow();
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }
-            }
-        } else if (currObject == startingLengthTextField) {
-            startingLength = Double.parseDouble(startingLengthTextField.getText());
-            frame.requestFocusInWindow();
-            guiLocalAdapter.updatePiece(startingLength, "start");
-        } else if (currObject == currLengthTextField) {
-            System.out.println("Do not touch!");
-            frame.requestFocusInWindow();
-        } else if (currObject == targetLengthTextField) {
-            targetLength = Double.parseDouble(targetLengthTextField.getText());
-            frame.requestFocusInWindow();
-            guiLocalAdapter.updatePiece(targetLength, "target");
+                break;
+            case "positionMinusButton":
+                try {
+                    nudgePosition(-1);
+                    frame.requestFocusInWindow();
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+                break;
+            case "positionPlusButton":
+                try {
+                    nudgePosition(1);
+                    frame.requestFocusInWindow();
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+                break;
+            case "positionTextField":
+                currPosition = Integer.parseInt(positionTextField.getText());
+                if (currPosition > 0 || currPosition < 255) {
+                    try {
+                        guiLocalAdapter.updatePosition(currPosition);
+                        frame.requestFocusInWindow();
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                    break;
+            case "angleTextField":
+                currAngle = Double.parseDouble(angleTextField.getText());
+                if (currAngle > 90 || currAngle < 0) {
+                    System.out.println("Enter a number between 0 and 90!");
+                    frame.requestFocusInWindow();
+                } else {
+                    angleTextField.getText();
+                    frame.requestFocusInWindow();
+                    try {
+                        guiLocalAdapter.angleUpdate(currAngle);
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
         }
     }
 @Override

@@ -11,8 +11,6 @@ public class FileWriter {
     public static FileInputStream currInput;
     public static FileOutputStream currOutput;
     public static XSSFWorkbook currWorkbook;
-
-    public static XSSFWorkbook tempWorkbook = new XSSFWorkbook();
     public static XSSFSheet currSheet;
     public static int currBlankRowNumber = 0;
 
@@ -35,11 +33,10 @@ public class FileWriter {
             cell.setCellValue(time);
             cell = saveRow.createCell(3);
             cell.setCellValue(startingLength);
-            FileOutputStream outFile = new FileOutputStream(new File("C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx"));
+            FileOutputStream outFile = new FileOutputStream("C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx");
             currWorkbook.write(outFile);
             currBlankRowNumber++;
             outFile.close();
-
 
         } catch (IOException e) {
             throw new RuntimeException(e);

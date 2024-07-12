@@ -17,7 +17,6 @@ public class testing {
         //Thread.sleep(1000);
         //FileWriter.writePiece(1,4);
 
-
         //FileReader.getProjectName();
         populateGUI();
 
