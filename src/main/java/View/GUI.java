@@ -10,6 +10,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static Adapter.Adapter.getAdapter;
 
@@ -23,6 +25,7 @@ public class GUI implements ActionListener, KeyListener {
     protected static JTextField startingLengthTextField = new JTextField();
     protected static JTextField currLengthTextField = new JTextField("");
     protected static JTextField targetLengthTextField = new JTextField("");
+    protected static JTextField errorTextField = new JTextField("");
     protected static JTextField pieceTimeTextField = new JTextField("");
     protected static JButton anglePlusButton = new JButton("+ .5°");
     protected static JButton angleMinusButton = new JButton("- .5°");
@@ -126,7 +129,6 @@ public class GUI implements ActionListener, KeyListener {
         JComponent currObject = (JComponent) e.getSource();
         String currName = String.valueOf(currObject.getName());
 
-
         switch(currName) {
             case "startingLengthTextField":
                 startingLength = Double.parseDouble(startingLengthTextField.getText());
@@ -139,7 +141,7 @@ public class GUI implements ActionListener, KeyListener {
                 guiLocalAdapter.updatePiece(targetLength, "target");
                 break;
             case "currLengthTextField":
-                System.out.println("Do not touch!");
+                errorWarning(currName);
                 frame.requestFocusInWindow();
                 break;
             case "anglePlusButton":
@@ -176,19 +178,22 @@ public class GUI implements ActionListener, KeyListener {
                 break;
             case "positionTextField":
                 currPosition = Integer.parseInt(positionTextField.getText());
-                if (currPosition > 0 || currPosition < 255) {
+                System.out.println("We got here");
+                if (currPosition >= 0 && currPosition <= 255) {
                     try {
                         guiLocalAdapter.updatePosition(currPosition);
                         frame.requestFocusInWindow();
                     } catch (InterruptedException ex) {
                         throw new RuntimeException(ex);
                     }
+                } else {
+                    errorWarning("badPosition");
                 }
                     break;
             case "angleTextField":
                 currAngle = Double.parseDouble(angleTextField.getText());
                 if (currAngle > 90 || currAngle < 0) {
-                    System.out.println("Enter a number between 0 and 90!");
+                    errorWarning(currName);
                     frame.requestFocusInWindow();
                 } else {
                     angleTextField.getText();
@@ -220,7 +225,7 @@ public void keyPressed(KeyEvent e) {
     //Save the current piece and make a new one.
     if (currKey == KeyEvent.VK_N) {
         if (!firstCut) {
-            System.out.println("There is no piece to save!");
+            errorWarning("noPiece");
         } else {
             try {
                 guiLocalAdapter.savePiece();
@@ -235,5 +240,47 @@ public void keyPressed(KeyEvent e) {
 public void keyReleased(KeyEvent e) {}
 @Override
 public void keyTyped(KeyEvent e) {}
+
+public void errorWarning(String warning) {
+
+    switch(warning) {
+
+        case "currLengthTextField":
+            errorTextField.setBackground(Color.RED);
+            errorTextField.setText("Do not touch the current length!");
+            resetErrorTextField();
+            break;
+
+        case "angleTextField":
+            errorTextField.setBackground(Color.red);
+            errorTextField.setText("Angle must be between 0 - 90!");
+            resetErrorTextField();
+            break;
+
+        case "noPiece":
+            errorTextField.setBackground(Color.red);
+            errorTextField.setText("There is no piece to save!");
+            resetErrorTextField();
+
+        case "badPosition":
+            errorTextField.setBackground(Color.RED);
+            errorTextField.setText("Position must be between 0 - 255");
+            resetErrorTextField();
+    }
+
+
+}
+
+public void resetErrorTextField() {
+    TimerTask task = new TimerTask() {
+        public void run() {
+            errorTextField.setText("");
+            errorTextField.setBackground(Color.WHITE);
+        }
+    };
+
+    java.util.Timer currTimer = new Timer();
+    currTimer.schedule(task, (long) 5000);
+    }
 
 }

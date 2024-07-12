@@ -31,6 +31,7 @@ public class TextFieldFactory {
         GUI.currLengthTextField.setName("currLengthTextField");
         GUI.currLengthTextField.setBounds(700,300, 150,50);
         GUI.currLengthTextField.setHorizontalAlignment(JTextField.CENTER);
+        GUI.currLengthTextField.setEditable(false);
         GUI.currLengthTextField.addActionListener(GUI.guiInstance);
 
         // Make target length text field
@@ -46,6 +47,10 @@ public class TextFieldFactory {
         GUI.pieceTimeTextField.setBounds(200,400, 150,50);
         GUI.pieceTimeTextField.setHorizontalAlignment(JTextField.CENTER);
         GUI.pieceTimeTextField.addActionListener(GUI.guiInstance);
+
+        GUI.errorTextField.setName("errorTextField");
+        GUI.errorTextField.setBounds(500, 100, 250, 50);
+        GUI.errorTextField.setHorizontalAlignment(JTextField.CENTER);
 
 
     }
