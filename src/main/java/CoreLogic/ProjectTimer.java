@@ -7,7 +7,7 @@ public class ProjectTimer {
     protected static long startTime;
     protected static long endTime;
 
-    private static final ModelFascade projectTimerLocalModelFacade = ModelFascade.getModelFascade();
+    private static final ModelFacade projectTimerLocalModelFacade = ModelFacade.getModelFascade();
 
     public static TimerTask guiTimerTask = new TimerTask() {
         @Override

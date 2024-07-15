@@ -1,10 +1,10 @@
 package Adapter;
-import CoreLogic.ModelFascade;
+import CoreLogic.ModelFacade;
 import View.GUI;
 
 import java.io.FileNotFoundException;
 
-import static CoreLogic.ModelFascade.getModelFascade;
+import static CoreLogic.ModelFacade.getModelFascade;
 import static View.GUI.getGUI;
 
 
@@ -12,7 +12,7 @@ public class Adapter {
 
     private static Adapter adapterInstance;
     private static final GUI adapterLocalGUI = getGUI();
-    private static final ModelFascade adapterLocalModelFascade = getModelFascade();
+    private static final ModelFacade adapterLocalModelFascade = getModelFascade();
 
     // Singleton pattern adapter constructor and getAdapter method
     private Adapter() {}

@@ -1,6 +1,7 @@
 package View;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class TextFieldFactory {
 
@@ -53,5 +54,6 @@ public class TextFieldFactory {
         GUI.errorTextField.setName("errorTextField");
         GUI.errorTextField.setBounds(400, 100, 250, 50);
         GUI.errorTextField.setHorizontalAlignment(JTextField.CENTER);
+        GUI.errorTextField.setBackground(Color.GREEN);
     }
 }

@@ -6,18 +6,18 @@ import java.io.FileNotFoundException;
 
 import static Adapter.Adapter.getAdapter;
 
-public class ModelFascade {
+public class ModelFacade {
 
     Adapter ModelFascadeLocalAdapter = getAdapter();
-    private static ModelFascade modelFascadeInstance;
-    private ModelFascade() {}
+    private static ModelFacade modelFascadeInstance;
+    private ModelFacade() {}
     private CutterHead CutterHead = new CutterHead();
 
     private Actuator Actuator = new Actuator();
 
-    public static ModelFascade getModelFascade() {
-        if (ModelFascade.modelFascadeInstance == null) {
-            modelFascadeInstance = new ModelFascade();
+    public static ModelFacade getModelFascade() {
+        if (ModelFacade.modelFascadeInstance == null) {
+            modelFascadeInstance = new ModelFacade();
         }
         return modelFascadeInstance;
     }

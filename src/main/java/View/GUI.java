@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,7 +25,7 @@ public class GUI implements ActionListener, KeyListener {
     protected static JTextField startingLengthTextField = new JTextField();
     protected static JTextField currLengthTextField = new JTextField("");
     protected static JTextField targetLengthTextField = new JTextField("");
-    protected static JTextField errorTextField = new JTextField("");
+    protected static JTextField errorTextField = new JTextField("No errors");
     protected static JTextField pieceTimeTextField = new JTextField("");
     protected static JButton anglePlusButton = new JButton("+ .5°");
     protected static JButton angleMinusButton = new JButton("- .5°");
@@ -51,8 +50,6 @@ public class GUI implements ActionListener, KeyListener {
     private final double strokeLength = 2.806;
     private final double inchPerStep = .010064453125;
 
-    public static HashMap<Object, String> componentNames = new HashMap<Object, String>();
-
     private GUI() {};
 
     public static GUI getGUI() {
@@ -63,7 +60,6 @@ public class GUI implements ActionListener, KeyListener {
     }
 
     public static void populateGUI() {
-
         TextFieldFactory.makeTextFields();
         ButtonFactory.makeButtons();
         LabelFactory.makeLabels();
@@ -71,23 +67,23 @@ public class GUI implements ActionListener, KeyListener {
         ProgressBarFactory.makeProgressBars();
     }
 
-    public void nudgeAngle(int direction) throws InterruptedException {
+    public void nudgeAngle(String direction) throws InterruptedException {
         currAngle = Double.parseDouble(angleTextField.getText());
-        if (direction < 0) {
-            if (currAngle < .50) {
-                errorWarning("badAngle");
-            } else {
-                guiLocalAdapter.angleUpdate(currAngle - .5 );
-                angleTextField.setText(String.valueOf(currAngle - .5));
-            }
 
-        } else {
-            if (currAngle > 89.50) {
-                errorWarning("badAngle");
-            } else {
-                guiLocalAdapter.angleUpdate(currAngle + .5 );
-                angleTextField.setText(String.valueOf(currAngle + .5));
-            }
+        switch(direction) {
+
+            case "up":
+                if (currAngle <= 89.50 ) {
+                    guiLocalAdapter.angleUpdate(currAngle + .5 );
+                    angleTextField.setText(String.valueOf(currAngle + .5));
+                } else { errorWarning("badAngle"); }
+                break;
+            case "down":
+                if (currAngle >= .50 ) {
+                    guiLocalAdapter.angleUpdate(currAngle - .5 );
+                    angleTextField.setText(String.valueOf(currAngle - .5));
+                } else { errorWarning("badAngle"); }
+                break;
         }
     }
 
@@ -109,10 +105,7 @@ public class GUI implements ActionListener, KeyListener {
             }
         }
     }
-
-    public double getCutLength() {
-        return strokeLength - (inchPerStep * currPosition);
-    }
+    public double getCutLength() { return strokeLength - (inchPerStep * currPosition); }
 
     public void updateTime() {
         String currTimeString;
@@ -151,7 +144,7 @@ public class GUI implements ActionListener, KeyListener {
                 break;
             case "anglePlusButton":
                 try {
-                    nudgeAngle(1);
+                    nudgeAngle("up");
                     frame.requestFocusInWindow();
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
@@ -159,7 +152,7 @@ public class GUI implements ActionListener, KeyListener {
                 break;
             case "angleMinusButton":
                 try {
-                    nudgeAngle(-1);
+                    nudgeAngle("down");
                     frame.requestFocusInWindow();
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
@@ -211,10 +204,9 @@ public class GUI implements ActionListener, KeyListener {
         }
     }
 
-    public int getNewProgress() {
+    public int getNewProgressBarValue() {
         double newProgressVal = Math.round((startingLength - currLength / (startingLength - targetLength)) * 100);
         return Integer.valueOf((int) newProgressVal);
-
     }
 @Override
 public void keyPressed(KeyEvent e) {
@@ -230,7 +222,7 @@ public void keyPressed(KeyEvent e) {
         currLength = getCutLength();
         currLengthTextField.setText(String.valueOf(currLength));
         guiLocalAdapter.updatePiece(getCutLength(), "current");
-        ProgressBarFactory.updateBar(getNewProgress());
+        ProgressBarFactory.updateBar(getNewProgressBarValue());
 
     }
 
@@ -280,7 +272,7 @@ public void errorWarning(String warning) {
 
         default:
             errorTextField.setBackground(Color.RED);
-            errorTextField.setText("An error occured!");
+            errorTextField.setText("An error occurred!");
             resetErrorTextField();
     }
 }
@@ -288,14 +280,14 @@ public void errorWarning(String warning) {
 public void resetErrorTextField() {
     TimerTask task = new TimerTask() {
         public void run() {
-            errorTextField.setText("");
-            errorTextField.setBackground(Color.WHITE);
+            errorTextField.setText("No errors");
+            errorTextField.setBackground(Color.GREEN);
         }
     };
 
     java.util.Timer currTimer = new Timer();
     currTimer.schedule(task, (long) 5000);
-    }
+}
 
 @Override
 public void keyReleased(KeyEvent e) {}
