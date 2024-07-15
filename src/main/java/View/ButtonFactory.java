@@ -22,14 +22,14 @@ public class ButtonFactory {
 
         GUI.positionMinusButton.setBounds(425,300,65,50);
         GUI.positionMinusButton.setFont(GUI.boldFont);
-        GUI.positionMinusButton.addActionListener(GUI.guiInstance);
         GUI.positionMinusButton.setName("positionMinusButton");
+        GUI.positionMinusButton.addActionListener(GUI.guiInstance);
 
 
         GUI.positionPlusButton.setBounds(560,300,65,50);
         GUI.positionPlusButton.setFont(GUI.boldFont);
-        GUI.positionPlusButton.addActionListener(GUI.guiInstance);
         GUI.positionPlusButton.setName("positionPlusButton");
+        GUI.positionPlusButton.addActionListener(GUI.guiInstance);
     }
 }
 

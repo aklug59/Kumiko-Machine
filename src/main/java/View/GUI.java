@@ -197,7 +197,7 @@ public class GUI implements ActionListener, KeyListener {
             case "angleTextField":
                 currAngle = Double.parseDouble(angleTextField.getText());
                 if (currAngle > 90 || currAngle < 0) {
-                    errorWarning(currName);
+                    errorWarning("badAngle");
                     frame.requestFocusInWindow();
                 } else {
                     angleTextField.getText();
@@ -260,27 +260,28 @@ public void errorWarning(String warning) {
             resetErrorTextField();
             break;
 
-        case "angleTextField":
-            errorTextField.setBackground(Color.red);
-            errorTextField.setText("Angle must be between 0 - 90!");
-            resetErrorTextField();
-            break;
-
         case "noPiece":
             errorTextField.setBackground(Color.red);
             errorTextField.setText("There is no piece to save!");
             resetErrorTextField();
+            break;
 
         case "badPosition":
             errorTextField.setBackground(Color.RED);
-            errorTextField.setText("Position must be between 0 - 255");
+            errorTextField.setText("Position must be between 0 - 255!");
             resetErrorTextField();
+            break;
 
         case "badAngle":
             errorTextField.setBackground(Color.RED);
             errorTextField.setText("Angle must be between 0 and 90!");
             resetErrorTextField();
+            break;
 
+        default:
+            errorTextField.setBackground(Color.RED);
+            errorTextField.setText("An error occured!");
+            resetErrorTextField();
     }
 }
 
