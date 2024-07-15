@@ -20,6 +20,7 @@ public class GUI implements ActionListener, KeyListener {
     protected static GUI guiInstance = new GUI();
     protected static Adapter guiLocalAdapter = getAdapter();
     protected static JFrame frame = new JFrame();
+    protected static JProgressBar progressBar = new JProgressBar();
     protected static JTextField angleTextField = new JTextField(1);
     protected static JTextField positionTextField = new JTextField(1);
     protected static JTextField startingLengthTextField = new JTextField();
@@ -66,41 +67,45 @@ public class GUI implements ActionListener, KeyListener {
         ButtonFactory.makeButtons();
         LabelFactory.makeLabels();
         FrameFactory.makeFrame();
+        ProgressBarFactory.makeProgressBars();
     }
 
     public void nudgeAngle(int direction) throws InterruptedException {
         currAngle = Double.parseDouble(angleTextField.getText());
         if (direction < 0) {
             if (currAngle < .50) {
-                System.out.println("Manual adjustment only!");
+                errorWarning("badAngle");
             } else {
                 guiLocalAdapter.angleUpdate(currAngle - .5 );
                 angleTextField.setText(String.valueOf(currAngle - .5));
-                System.out.println("The minus angle button was pressed!");
             }
 
         } else {
             if (currAngle > 89.50) {
-                System.out.println("Manual adjustment only!");
+                errorWarning("badAngle");
             } else {
                 guiLocalAdapter.angleUpdate(currAngle + .5 );
                 angleTextField.setText(String.valueOf(currAngle + .5));
-                System.out.println("The plus angle button was pressed!");
             }
         }
     }
 
     public void nudgePosition (int direction) throws InterruptedException {
         currPosition = Integer.parseInt(positionTextField.getText());
-        if (direction > 0) {
-            currPosition = currPosition + 5;
-            positionTextField.setText(String.valueOf(currPosition));
-            guiLocalAdapter.updatePosition(currPosition);
+        if (currPosition >= 251 && direction > 0 || currPosition <= 4 && direction < 0) {
+            errorWarning("badPosition");
 
         } else {
-            currPosition = currPosition - 5;
-            positionTextField.setText(String.valueOf(currPosition));
-            guiLocalAdapter.updatePosition(currPosition);
+            if (direction > 0) {
+                currPosition = currPosition + 5;
+                positionTextField.setText(String.valueOf(currPosition));
+                guiLocalAdapter.updatePosition(currPosition);
+
+            } else {
+                currPosition = currPosition - 5;
+                positionTextField.setText(String.valueOf(currPosition));
+                guiLocalAdapter.updatePosition(currPosition);
+            }
         }
     }
 
@@ -178,7 +183,6 @@ public class GUI implements ActionListener, KeyListener {
                 break;
             case "positionTextField":
                 currPosition = Integer.parseInt(positionTextField.getText());
-                System.out.println("We got here");
                 if (currPosition >= 0 && currPosition <= 255) {
                     try {
                         guiLocalAdapter.updatePosition(currPosition);
@@ -206,6 +210,12 @@ public class GUI implements ActionListener, KeyListener {
                 }
         }
     }
+
+    public int getNewProgress() {
+        double newProgressVal = Math.round((startingLength - currLength / (startingLength - targetLength)) * 100);
+        return Integer.valueOf((int) newProgressVal);
+
+    }
 @Override
 public void keyPressed(KeyEvent e) {
 
@@ -220,6 +230,8 @@ public void keyPressed(KeyEvent e) {
         currLength = getCutLength();
         currLengthTextField.setText(String.valueOf(currLength));
         guiLocalAdapter.updatePiece(getCutLength(), "current");
+        ProgressBarFactory.updateBar(getNewProgress());
+
     }
 
     //Save the current piece and make a new one.
@@ -236,10 +248,7 @@ public void keyPressed(KeyEvent e) {
         }
     }
 }
-@Override
-public void keyReleased(KeyEvent e) {}
-@Override
-public void keyTyped(KeyEvent e) {}
+
 
 public void errorWarning(String warning) {
 
@@ -266,9 +275,13 @@ public void errorWarning(String warning) {
             errorTextField.setBackground(Color.RED);
             errorTextField.setText("Position must be between 0 - 255");
             resetErrorTextField();
+
+        case "badAngle":
+            errorTextField.setBackground(Color.RED);
+            errorTextField.setText("Angle must be between 0 and 90!");
+            resetErrorTextField();
+
     }
-
-
 }
 
 public void resetErrorTextField() {
@@ -282,5 +295,10 @@ public void resetErrorTextField() {
     java.util.Timer currTimer = new Timer();
     currTimer.schedule(task, (long) 5000);
     }
+
+@Override
+public void keyReleased(KeyEvent e) {}
+@Override
+public void keyTyped(KeyEvent e) {}
 
 }

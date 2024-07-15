@@ -49,7 +49,7 @@ public class TextFieldFactory {
         GUI.pieceTimeTextField.addActionListener(GUI.guiInstance);
 
         GUI.errorTextField.setName("errorTextField");
-        GUI.errorTextField.setBounds(500, 100, 250, 50);
+        GUI.errorTextField.setBounds(400, 100, 250, 50);
         GUI.errorTextField.setHorizontalAlignment(JTextField.CENTER);
 
 

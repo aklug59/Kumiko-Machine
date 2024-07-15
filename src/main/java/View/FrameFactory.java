@@ -42,6 +42,8 @@ public class FrameFactory {
         GUI.frame.add(GUI.timeLabel);
         GUI.frame.add(GUI.projectName);
 
+        GUI.frame.add(progressBar);
+
         GUI.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
