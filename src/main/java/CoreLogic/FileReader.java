@@ -13,10 +13,12 @@ public class FileReader {
     public static FileInputStream currFile;
     public static XSSFWorkbook currWorkbook;
     public static XSSFSheet currSheet;
+    private static final String filePath = "C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx";
+
     public static String getProjectName() {
 
             try {
-                currFile = new FileInputStream("C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx");
+                currFile = new FileInputStream(filePath);
                 currWorkbook = new XSSFWorkbook(currFile);
                 currSheet = currWorkbook.getSheetAt(0);
                 Iterator<Row> rowIterator = currSheet.rowIterator();

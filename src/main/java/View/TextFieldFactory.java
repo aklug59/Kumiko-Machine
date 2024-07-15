@@ -12,6 +12,7 @@ public class TextFieldFactory {
         GUI.angleTextField.setBounds(500,400, 50,50);
         GUI.angleTextField.setHorizontalAlignment(JTextField.CENTER);
         GUI.angleTextField.addActionListener(GUI.guiInstance);
+
         // Make position field
         GUI.positionTextField.setText(String.valueOf(GUI.currPosition));
         GUI.positionTextField.setName("positionTextField");
@@ -48,10 +49,9 @@ public class TextFieldFactory {
         GUI.pieceTimeTextField.setHorizontalAlignment(JTextField.CENTER);
         GUI.pieceTimeTextField.addActionListener(GUI.guiInstance);
 
+        //Make errorTextField
         GUI.errorTextField.setName("errorTextField");
         GUI.errorTextField.setBounds(400, 100, 250, 50);
         GUI.errorTextField.setHorizontalAlignment(JTextField.CENTER);
-
-
     }
 }

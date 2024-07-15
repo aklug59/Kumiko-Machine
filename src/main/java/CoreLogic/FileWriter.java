@@ -13,6 +13,7 @@ public class FileWriter {
     public static XSSFWorkbook currWorkbook;
     public static XSSFSheet currSheet;
     public static int currBlankRowNumber = 0;
+    private static final String filePath = "C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx";
 
     public static Row saveRow;
 
@@ -33,7 +34,7 @@ public class FileWriter {
             cell.setCellValue(time);
             cell = saveRow.createCell(3);
             cell.setCellValue(startingLength);
-            FileOutputStream outFile = new FileOutputStream("C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx");
+            FileOutputStream outFile = new FileOutputStream(filePath);
             currWorkbook.write(outFile);
             currBlankRowNumber++;
             outFile.close();
@@ -45,7 +46,7 @@ public class FileWriter {
 
     public static void findBlankRow() throws IOException {
         //Make new FileInputStream, workbook and get the first sheet from the file
-        currInput = new FileInputStream("C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx");
+        currInput = new FileInputStream(filePath);
         currWorkbook = new XSSFWorkbook(currInput);
         currSheet = currWorkbook.getSheetAt(0);
         Cell cell;

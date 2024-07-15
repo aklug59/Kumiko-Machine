@@ -1,6 +1,8 @@
 package View;
 
-import static View.GUI.projectName;
+import java.awt.*;
+
+import static View.GUI.projectNameLabel;
 
 public class LabelFactory {
 
@@ -21,15 +23,18 @@ public class LabelFactory {
         GUI.targetLengthLabel.setBounds(725,325,100,100);
         GUI.targetLengthLabel.setVisible(true);
 
-        GUI.pieceTimeTextField.setBounds(200,400, 150,50);
-
         GUI.timeLabel.setBounds(235, 360,100,50);
         GUI.timeLabel.setVisible(true);
 
+        GUI.progressBarLabel.setBounds(725, 450, 150, 50);
+        GUI.progressBarLabel.setVisible(true);
+
         String currName = GUI.guiLocalAdapter.getProjectName();
-        projectName.setText(currName);
-        projectName.setBounds(50,50,100,100);
-        projectName.setVisible(true);
+        projectNameLabel.setText(currName);
+        projectNameLabel.setFont(new Font("BOLD", Font.PLAIN, 30));
+
+        projectNameLabel.setBounds(50,50,300,100);
+        projectNameLabel.setVisible(true);
 
     }
 }

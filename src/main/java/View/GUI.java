@@ -38,7 +38,8 @@ public class GUI implements ActionListener, KeyListener {
     protected static JLabel currentLengthLabel = new JLabel("Current Length");
     protected static JLabel targetLengthLabel = new JLabel("Target Length");
     protected static JLabel timeLabel = new JLabel("Elapsed Time:");
-    protected static JLabel projectName = new JLabel("");
+    protected static JLabel projectNameLabel = new JLabel("");
+    protected static JLabel progressBarLabel = new JLabel("Piece Progress");
     protected static Font boldFont = new Font("BOLD",Font.BOLD, anglePlusButton.getFont().getSize());
     protected static double currAngle = 90;
     protected static int currPosition = 0;
@@ -110,8 +111,7 @@ public class GUI implements ActionListener, KeyListener {
     }
 
     public double getCutLength() {
-        double postCutPieceLength = strokeLength - (inchPerStep * currPosition);
-        return postCutPieceLength;
+        return strokeLength - (inchPerStep * currPosition);
     }
 
     public void updateTime() {

@@ -19,11 +19,13 @@ public class FrameFactory {
         GUI.frame.setVisible(true);
         GUI.frame.setFocusable(true);
         GUI.frame.addKeyListener(GUI.guiInstance);
+
+        //Add all components to the frame
+
         GUI.frame.add(GUI.angleLabel);
         GUI.frame.add(GUI.angleTextField);
         GUI.frame.add(GUI.anglePlusButton);
         GUI.frame.add(GUI.angleMinusButton);
-        GUI.frame.add(pieceTimeTextField);
 
 
         GUI.frame.add(GUI.positionLabel);
@@ -31,6 +33,7 @@ public class FrameFactory {
         GUI.frame.add(GUI.positionPlusButton);
         GUI.frame.add(GUI.positionMinusButton);
 
+        GUI.frame.add(pieceTimeTextField);
         GUI.frame.add(GUI.startingLengthTextField);
         GUI.frame.add(GUI.currLengthTextField);
         GUI.frame.add(GUI.targetLengthTextField);
@@ -40,7 +43,8 @@ public class FrameFactory {
         GUI.frame.add(GUI.currentLengthLabel);
         GUI.frame.add(GUI.targetLengthLabel);
         GUI.frame.add(GUI.timeLabel);
-        GUI.frame.add(GUI.projectName);
+        GUI.frame.add(GUI.projectNameLabel);
+        GUI.frame.add(progressBarLabel);
 
         GUI.frame.add(progressBar);
 
