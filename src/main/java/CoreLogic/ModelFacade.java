@@ -5,6 +5,7 @@ import Adapter.Adapter;
 import java.io.FileNotFoundException;
 
 import static Adapter.Adapter.getAdapter;
+import static CoreLogic.Constants.*;
 
 public class ModelFacade {
 
@@ -26,13 +27,13 @@ public class ModelFacade {
 
     public void changePieceLength(double length, String value) {
         switch(value) {
-            case "start":
+            case START:
                 Piece.startingLength = length;
                 break;
-            case "current":
+            case CURRENT:
                 Piece.currLength = length;
                 break;
-            case "target":
+            case TARGET:
                 Piece.targetLength = length;
                 break;
         }
