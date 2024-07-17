@@ -44,11 +44,17 @@ public class FileWriter {
         }
     }
 
-    public static void findBlankRow() throws IOException {
+    public static void findBlankRow() {
         //Make new FileInputStream, workbook and get the first sheet from the file
-        currInput = new FileInputStream(filePath);
-        currWorkbook = new XSSFWorkbook(currInput);
-        currSheet = currWorkbook.getSheetAt(0);
+        try {
+            currInput = new FileInputStream(filePath);
+            currWorkbook = new XSSFWorkbook(currInput);
+            currSheet = currWorkbook.getSheetAt(0);
+        } catch (Exception e) {
+            if (e instanceof IOException) {
+                throw new RuntimeException(e.getMessage());
+            }
+        }
         Cell cell;
         /* For every row in the sheet, get the cell type in the 2nd column, if it is null, break,
          * otherwise if the cell contains either a String or a number, iterate currBlankRowNumber
@@ -63,7 +69,11 @@ public class FileWriter {
             if (cellString.equals("STRING") || cellString.equals("NUMERIC")) {
                 currBlankRowNumber++;
             } else {
-                currInput.close();
+                try {
+                    currInput.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             }
         }
