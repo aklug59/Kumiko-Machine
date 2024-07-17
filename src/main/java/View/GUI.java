@@ -132,12 +132,12 @@ public class GUI implements ActionListener, KeyListener {
             case STARTING_LENGTH_TEXTFIELD:
                 startingLength = Double.parseDouble(startingLengthTextField.getText());
                 frame.requestFocusInWindow();
-                guiLocalAdapter.updatePiece(startingLength, "start");
+                guiLocalAdapter.updatePiece(startingLength, START);
                 break;
             case TARGET_LENGTH_TEXTFIELD:
                 targetLength = Double.parseDouble(targetLengthTextField.getText());
                 frame.requestFocusInWindow();
-                guiLocalAdapter.updatePiece(targetLength, "target");
+                guiLocalAdapter.updatePiece(targetLength, TARGET);
                 break;
             case CURR_LENGTH_TEXTFIELD:
                 errorWarning(currName);

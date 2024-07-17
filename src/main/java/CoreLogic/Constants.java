@@ -31,6 +31,10 @@ public class Constants {
     public static final String ANGLE_TEXTFIELD = "angleTextField";
 
 
+    //ARDUINO
+    public static final String CLOSED = "Closed";
+    public static final String OPEN = "Open";
+
 
 
 

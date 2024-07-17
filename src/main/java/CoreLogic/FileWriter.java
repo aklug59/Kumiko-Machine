@@ -60,7 +60,6 @@ public class FileWriter {
             }
             Object cellType = cell.getCellType();
             String cellString = String.valueOf(cellType);
-            System.out.println(cellString);
             if (cellString.equals("STRING") || cellString.equals("NUMERIC")) {
                 currBlankRowNumber++;
             } else {

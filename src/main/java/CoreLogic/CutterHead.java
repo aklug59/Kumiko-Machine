@@ -2,6 +2,7 @@ package CoreLogic;
 
 import static CoreLogic.ArduinoFacade.currentState;
 import static CoreLogic.ArduinoFacade.getArduinoFacade;
+import static CoreLogic.Constants.*;
 
 /*
 * 800ms delay seems to me minimum functional threshold where the serial on the arduino isn't skipping reads
@@ -20,9 +21,9 @@ public class CutterHead {
 
     public static void setAngle(double angle) throws InterruptedException {
         //If a connection between the computer and the Arduino has not yet been made, make it.
-        if (currentState.equals("Closed")) {
+        if (currentState.equals(CLOSED)) {
             ardFac.openConnection();
-            currentState = "Open";
+            currentState = OPEN;
         }
 
         /*Send the arduino an integer indicating StepperMotor vs.
@@ -35,9 +36,6 @@ public class CutterHead {
         }
         else if (angle > currAngle){
             motorDirection = 1;
-        } else if (angle == currAngle) {
-            //Warn the user that the same angle is being used. Implement in GUI once written.
-            System.out.println("This is the same angle!");
         }
 
         /*Send the arduino the motor direction followed by the number of steps to move. Sleep 800ms between both
