@@ -2,8 +2,6 @@ package CoreLogic;
 
 import Adapter.Adapter;
 
-import java.io.FileNotFoundException;
-
 import static Adapter.Adapter.getAdapter;
 import static CoreLogic.Constants.*;
 
@@ -44,7 +42,7 @@ public class ModelFacade {
     }
     public void updateTime() { ModelFascadeLocalAdapter.updateTime(); }
 
-    public void savePiece() throws FileNotFoundException {
+    public void savePiece() {
             ProjectTimer.stopTimer();
             float pieceConstructionTime = ProjectTimer.getPieceTime() / 1000f;
             ProjectTimer.resetTimer();

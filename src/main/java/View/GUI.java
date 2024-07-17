@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.FileNotFoundException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -232,13 +231,8 @@ public void keyPressed(KeyEvent e) {
         if (!firstCut) {
             errorWarning(NO_PIECE);
         } else {
-            try {
-                guiLocalAdapter.savePiece();
-                ProgressBarFactory.updateBar(0);
-
-            } catch (FileNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+            guiLocalAdapter.savePiece();
+            ProgressBarFactory.updateBar(0);
             resetPieceValues();
         }
     }

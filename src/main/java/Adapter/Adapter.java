@@ -1,8 +1,7 @@
 package Adapter;
+
 import CoreLogic.ModelFacade;
 import View.GUI;
-
-import java.io.FileNotFoundException;
 
 import static CoreLogic.ModelFacade.getModelFascade;
 import static View.GUI.getGUI;
@@ -28,7 +27,7 @@ public class Adapter {
     public void updatePosition(int newPosition) throws InterruptedException { adapterLocalModelFascade.changePosition(newPosition); }
     public void updatePiece(double length, String value) { adapterLocalModelFascade.changePieceLength(length, value); }
     public void updateTime() { adapterLocalGUI.updateTime(); }
-    public void savePiece() throws FileNotFoundException { adapterLocalModelFascade.savePiece(); }
+    public void savePiece()  { adapterLocalModelFascade.savePiece(); }
     public void startTimer() {
         adapterLocalModelFascade.startTimer();
     }

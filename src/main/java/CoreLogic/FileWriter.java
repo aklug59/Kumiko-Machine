@@ -17,7 +17,7 @@ public class FileWriter {
 
     public static Row saveRow;
 
-    public static void writePiece(double startingLength, float time) throws FileNotFoundException {
+    public static void writePiece(double startingLength, float time) {
         try {
         /* On the first write, the currBlankRowNumber will be 0. Call the findBlankRow method to populate the currBlankRowNumber
          * With the first instance of an empty row.
