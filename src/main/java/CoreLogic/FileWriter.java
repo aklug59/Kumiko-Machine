@@ -50,10 +50,8 @@ public class FileWriter {
             currInput = new FileInputStream(filePath);
             currWorkbook = new XSSFWorkbook(currInput);
             currSheet = currWorkbook.getSheetAt(0);
-        } catch (Exception e) {
-            if (e instanceof IOException) {
-                throw new RuntimeException(e.getMessage());
-            }
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
         }
         Cell cell;
         /* For every row in the sheet, get the cell type in the 2nd column, if it is null, break,

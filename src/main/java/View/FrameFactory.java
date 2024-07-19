@@ -1,7 +1,6 @@
 package View;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ public class FrameFactory {
         GUI.frame.setLayout(null);
         GUI.frame.setVisible(true);
         GUI.frame.setFocusable(true);
-        GUI.frame.addKeyListener(GUI.guiInstance);
+        GUI.frame.addKeyListener(guiInstance);
 
         //Add all components to the frame
 

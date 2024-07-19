@@ -40,7 +40,7 @@ public class ModelFacade {
     public void startTimer() {
         ProjectTimer.resetTimer();
     }
-    public void updateTime() { ModelFascadeLocalAdapter.updateTime(); }
+    public void updateTime(int currTime) { ModelFascadeLocalAdapter.updateTime(currTime); }
 
     public void savePiece() {
             ProjectTimer.stopTimer();

@@ -26,7 +26,7 @@ public class Adapter {
     public void angleUpdate(double newAngle) throws InterruptedException { adapterLocalModelFascade.changeAngle(newAngle); }
     public void updatePosition(int newPosition) throws InterruptedException { adapterLocalModelFascade.changePosition(newPosition); }
     public void updatePiece(double length, String value) { adapterLocalModelFascade.changePieceLength(length, value); }
-    public void updateTime() { adapterLocalGUI.updateTime(); }
+    public void updateTime(int currTime) { adapterLocalGUI.updateGUITime(currTime); }
     public void savePiece()  { adapterLocalModelFascade.savePiece(); }
     public void startTimer() {
         adapterLocalModelFascade.startTimer();

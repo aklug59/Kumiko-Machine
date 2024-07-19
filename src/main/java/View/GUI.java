@@ -4,10 +4,7 @@ import Adapter.Adapter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -16,6 +13,7 @@ import static CoreLogic.Constants.*;
 
 
 public class GUI implements ActionListener, KeyListener {
+
     protected static GUI guiInstance = new GUI();
     protected static Adapter guiLocalAdapter = getAdapter();
     protected static JFrame frame = new JFrame();
@@ -45,7 +43,7 @@ public class GUI implements ActionListener, KeyListener {
     double startingLength;
     double currLength;
     double targetLength;
-    int currTime = 0;
+    //int currTime = 0;
     boolean firstCut = false;
     private final double strokeLength = 2.806;
     private final double inchPerStep = .010064453125;
@@ -86,7 +84,6 @@ public class GUI implements ActionListener, KeyListener {
                 break;
         }
     }
-
     public void nudgePosition (int direction) throws InterruptedException {
         currPosition = Integer.parseInt(positionTextField.getText());
         if (currPosition >= 251 && direction > 0 || currPosition <= 4 && direction < 0) {
@@ -107,9 +104,8 @@ public class GUI implements ActionListener, KeyListener {
     }
     public double getCutLength() { return strokeLength - (inchPerStep * currPosition); }
 
-    public void updateTime() {
+    public void updateGUITime(int currTime) {
         String currTimeString;
-        currTime++;
         currTimeString = String.valueOf(currTime);
         pieceTimeTextField.setText(currTimeString);
     }
@@ -119,10 +115,9 @@ public class GUI implements ActionListener, KeyListener {
         currLengthTextField.setText(ZERO);
         targetLengthTextField.setText(ZERO);
         pieceTimeTextField.setText(ZERO);
-        currTime = 0;
+
     }
 
-@Override
     public void actionPerformed(ActionEvent e) {
         JComponent currObject = (JComponent) e.getSource();
         String currName = String.valueOf(currObject.getName());
@@ -208,87 +203,85 @@ public class GUI implements ActionListener, KeyListener {
         double newProgressVal = Math.round(((startingLength - currLength) / (startingLength - targetLength)) * 100);
         return Integer.valueOf((int) newProgressVal);
     }
-@Override
-public void keyPressed(KeyEvent e) {
 
-    int currKey = e.getKeyCode();
+    public void keyPressed(KeyEvent e) {
 
-    //Inform the model a cut has been made and update the piece object and GUI accordingly.
-    if (currKey == KeyEvent.VK_C) {
-        if (!firstCut) {
-            guiLocalAdapter.startTimer();
-            firstCut = true;
+        int currKey = e.getKeyCode();
+
+        //Inform the model a cut has been made and update the piece object and GUI accordingly.
+        if (currKey == KeyEvent.VK_C) {
+            if (!firstCut) {
+                guiLocalAdapter.startTimer();
+                firstCut = true;
+            }
+            currLength = getCutLength();
+            currLengthTextField.setText(String.valueOf(currLength));
+            guiLocalAdapter.updatePiece(getCutLength(), CURRENT);
+            ProgressBarFactory.updateBar(getNewProgressBarValue());
+
         }
-        currLength = getCutLength();
-        currLengthTextField.setText(String.valueOf(currLength));
-        guiLocalAdapter.updatePiece(getCutLength(), CURRENT);
-        ProgressBarFactory.updateBar(getNewProgressBarValue());
 
+        //Save the current piece and make a new one.
+        if (currKey == KeyEvent.VK_N) {
+            if (!firstCut) {
+                errorWarning(NO_PIECE);
+            } else {
+                guiLocalAdapter.savePiece();
+                ProgressBarFactory.updateBar(0);
+                resetPieceValues();
+            }
+        }
     }
 
-    //Save the current piece and make a new one.
-    if (currKey == KeyEvent.VK_N) {
-        if (!firstCut) {
-            errorWarning(NO_PIECE);
-        } else {
-            guiLocalAdapter.savePiece();
-            ProgressBarFactory.updateBar(0);
-            resetPieceValues();
+    public void errorWarning(String warning) {
+
+        switch(warning) {
+
+            case CURR_LENGTH_TEXTFIELD:
+                errorTextField.setBackground(Color.RED);
+                errorTextField.setText("Do not touch the current length!");
+                resetErrorTextField();
+                break;
+
+            case NO_PIECE:
+                errorTextField.setBackground(Color.red);
+                errorTextField.setText("There is no piece to save!");
+                resetErrorTextField();
+                break;
+
+            case BAD_POSITION:
+                errorTextField.setBackground(Color.RED);
+                errorTextField.setText("Position must be between 0 - 255!");
+                resetErrorTextField();
+                break;
+
+            case BAD_ANGLE:
+                errorTextField.setBackground(Color.RED);
+                errorTextField.setText("Angle must be between 0 and 90!");
+                resetErrorTextField();
+                break;
+
+            default:
+                errorTextField.setBackground(Color.RED);
+                errorTextField.setText("An error occurred!");
+                resetErrorTextField();
         }
     }
-}
 
+    public void resetErrorTextField() {
+        TimerTask task = new TimerTask() {
+            public void run() {
+                errorTextField.setText("No errors");
+                errorTextField.setBackground(Color.GREEN);
+            }
+        };
 
-public void errorWarning(String warning) {
-
-    switch(warning) {
-
-        case CURR_LENGTH_TEXTFIELD:
-            errorTextField.setBackground(Color.RED);
-            errorTextField.setText("Do not touch the current length!");
-            resetErrorTextField();
-            break;
-
-        case NO_PIECE:
-            errorTextField.setBackground(Color.red);
-            errorTextField.setText("There is no piece to save!");
-            resetErrorTextField();
-            break;
-
-        case BAD_POSITION:
-            errorTextField.setBackground(Color.RED);
-            errorTextField.setText("Position must be between 0 - 255!");
-            resetErrorTextField();
-            break;
-
-        case BAD_ANGLE:
-            errorTextField.setBackground(Color.RED);
-            errorTextField.setText("Angle must be between 0 and 90!");
-            resetErrorTextField();
-            break;
-
-        default:
-            errorTextField.setBackground(Color.RED);
-            errorTextField.setText("An error occurred!");
-            resetErrorTextField();
+        java.util.Timer currTimer = new Timer();
+        currTimer.schedule(task, (long) 5000);
     }
-}
-
-public void resetErrorTextField() {
-    TimerTask task = new TimerTask() {
-        public void run() {
-            errorTextField.setText("No errors");
-            errorTextField.setBackground(Color.GREEN);
-        }
-    };
-
-    java.util.Timer currTimer = new Timer();
-    currTimer.schedule(task, (long) 5000);
-}
-
-@Override
-public void keyReleased(KeyEvent e) {}
-@Override
-public void keyTyped(KeyEvent e) {}
+    @Override
+    public void keyReleased(KeyEvent e) {}
+    @Override
+    public void keyTyped(KeyEvent e) {}
 
 }

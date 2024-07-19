@@ -6,6 +6,7 @@ public class ProjectTimer {
 
     protected static long startTime;
     protected static long endTime;
+    protected static int currTime = 0;
 
     private static final ModelFacade projectTimerLocalModelFacade = ModelFacade.getModelFascade();
 
@@ -31,6 +32,7 @@ public class ProjectTimer {
     protected static void resetTimer() {
         startTime = System.currentTimeMillis();
         Timer projectTimer = new Timer();
+        currTime = 0;
         guiTimerTask = new TimerTask() {
             @Override
             public void run() {
@@ -42,6 +44,8 @@ public class ProjectTimer {
 
     
     protected static void GUITimeUpdate() {
-        projectTimerLocalModelFacade.updateTime();
+
+        projectTimerLocalModelFacade.updateTime(currTime);
+        currTime++;
     }
 }
