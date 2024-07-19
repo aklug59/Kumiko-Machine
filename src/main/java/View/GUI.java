@@ -43,20 +43,17 @@ public class GUI extends ListeningAdapter {
     double startingLength;
     double currLength;
     double targetLength;
-    //int currTime = 0;
     boolean firstCut = false;
-    private final double strokeLength = 2.806;
-    private final double inchPerStep = .010064453125;
 
+    //Singleton constructor and getGUI method
     private GUI() {};
-
     public static GUI getGUI() {
         if (GUI.guiInstance == null) {
             guiInstance = new GUI();
         }
         return guiInstance;
     }
-
+    //Tell the various factories associated with GUI to make their components.
     public static void populateGUI() {
         TextFieldFactory.makeTextFields();
         ButtonFactory.makeButtons();
@@ -115,7 +112,6 @@ public class GUI extends ListeningAdapter {
         currLengthTextField.setText(ZERO);
         targetLengthTextField.setText(ZERO);
         pieceTimeTextField.setText(ZERO);
-
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -201,7 +197,7 @@ public class GUI extends ListeningAdapter {
 
     public int getNewProgressBarValue() {
         double newProgressVal = Math.round(((startingLength - currLength) / (startingLength - targetLength)) * 100);
-        return Integer.valueOf((int) newProgressVal);
+        return (int) newProgressVal;
     }
 
     public void keyPressed(KeyEvent e) {
@@ -233,6 +229,7 @@ public class GUI extends ListeningAdapter {
         }
     }
     public void errorWarning(String warning) {
+        //String switch for error handling
         switch(warning) {
 
             case CURR_LENGTH_TEXTFIELD:
@@ -277,9 +274,4 @@ public class GUI extends ListeningAdapter {
         java.util.Timer currTimer = new Timer();
         currTimer.schedule(task, (long) 5000);
     }
-    /*@Override
-    public void keyReleased(KeyEvent e) {}
-    @Override
-    public void keyTyped(KeyEvent e) {}*/
-
 }

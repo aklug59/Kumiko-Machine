@@ -17,8 +17,6 @@ public class Constants {
     public static final String TARGET = "target";
 
 
-
-
     //FRAME COMPONENTS
     public static final String STARTING_LENGTH_TEXTFIELD = "startingLengthTextField";
     public static final String TARGET_LENGTH_TEXTFIELD = "targetLengthTextField";

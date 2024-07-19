@@ -18,8 +18,6 @@ public class ProjectTimer {
     };
 
     public ProjectTimer() {}
-
-
     protected static void stopTimer() {
         guiTimerTask.cancel();
         endTime = System.currentTimeMillis();
@@ -44,7 +42,6 @@ public class ProjectTimer {
 
     
     protected static void GUITimeUpdate() {
-
         projectTimerLocalModelFacade.updateTime(currTime);
         currTime++;
     }

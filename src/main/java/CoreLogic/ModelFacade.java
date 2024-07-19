@@ -8,17 +8,18 @@ import static CoreLogic.Constants.*;
 public class ModelFacade {
 
     Adapter ModelFascadeLocalAdapter = getAdapter();
-    private static ModelFacade modelFascadeInstance;
-    private ModelFacade() {}
-    private CutterHead CutterHead = new CutterHead();
-
+    private static ModelFacade modelFacadeInstance;
+    private static CutterHead CutterHead = new CutterHead();
     private Actuator Actuator = new Actuator();
+    //Singleton pattern constructor and getModeFacadeMethod
+    private ModelFacade() {}
 
+    //Singleton patter
     public static ModelFacade getModelFascade() {
-        if (ModelFacade.modelFascadeInstance == null) {
-            modelFascadeInstance = new ModelFacade();
+        if (ModelFacade.modelFacadeInstance == null) {
+            modelFacadeInstance = new ModelFacade();
         }
-        return modelFascadeInstance;
+        return modelFacadeInstance;
     }
     public void changeAngle(double newAngle) throws InterruptedException { CutterHead.setAngle(newAngle); }
     public void changePosition(int position) throws InterruptedException { Actuator.setPosition(position); }
@@ -43,11 +44,11 @@ public class ModelFacade {
     public void updateTime(int currTime) { ModelFascadeLocalAdapter.updateTime(currTime); }
 
     public void savePiece() {
-            ProjectTimer.stopTimer();
-            float pieceConstructionTime = ProjectTimer.getPieceTime() / 1000f;
-            ProjectTimer.resetTimer();
-            FileWriter.writePiece(Piece.startingLength,pieceConstructionTime);
-            Piece.resetLengths();
+        ProjectTimer.stopTimer();
+        float pieceConstructionTime = ProjectTimer.getPieceTime() / 1000f;
+        ProjectTimer.resetTimer();
+        FileWriter.writePiece(Piece.startingLength,pieceConstructionTime);
+        Piece.resetLengths();
     }
     public String getProjectName() { return FileReader.getProjectName(); }
     public double getCutLength() {return Actuator.getCutLength();}

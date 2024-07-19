@@ -11,7 +11,7 @@ public class Adapter {
 
     private static Adapter adapterInstance;
     private static final GUI adapterLocalGUI = getGUI();
-    private static final ModelFacade adapterLocalModelFascade = getModelFascade();
+    private static final ModelFacade adapterLocalModelFacade = getModelFascade();
 
     // Singleton pattern adapter constructor and getAdapter method
     private Adapter() {}
@@ -21,20 +21,20 @@ public class Adapter {
             adapterInstance = new Adapter();
         }
         return adapterInstance;
-
     }
-    public void angleUpdate(double newAngle) throws InterruptedException { adapterLocalModelFascade.changeAngle(newAngle); }
-    public void updatePosition(int newPosition) throws InterruptedException { adapterLocalModelFascade.changePosition(newPosition); }
-    public void updatePiece(double length, String value) { adapterLocalModelFascade.changePieceLength(length, value); }
+
+    //All adapter methods pass requests from GUI to ModelFacade for logic handling.
+    public void angleUpdate(double newAngle) throws InterruptedException { adapterLocalModelFacade.changeAngle(newAngle); }
+    public void updatePosition(int newPosition) throws InterruptedException { adapterLocalModelFacade.changePosition(newPosition); }
+    public void updatePiece(double length, String value) { adapterLocalModelFacade.changePieceLength(length, value); }
     public void updateTime(int currTime) { adapterLocalGUI.updateGUITime(currTime); }
-    public void savePiece()  { adapterLocalModelFascade.savePiece(); }
+    public void savePiece()  { adapterLocalModelFacade.savePiece(); }
     public void startTimer() {
-        adapterLocalModelFascade.startTimer();
+        adapterLocalModelFacade.startTimer();
     }
     public String getProjectName() {
-        return adapterLocalModelFascade.getProjectName();
+        return adapterLocalModelFacade.getProjectName();
     }
-
-    public double getCutLength() { return adapterLocalModelFascade.getCutLength(); }
+    public double getCutLength() { return adapterLocalModelFacade.getCutLength(); }
 
 }

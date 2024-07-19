@@ -10,12 +10,10 @@ public class Actuator {
     static ArduinoInterface ardFac = getArduinoFacade();
     public Actuator() {};
     public void setPosition(int newPosition) throws InterruptedException {
-
         position = newPosition;
         ardFac.initial(initilizer);
         Thread.sleep(800);
         ardFac.newPosition(position);
-
     }
 
     public double getCutLength() { return strokeLength - (inchPerStep * position); }

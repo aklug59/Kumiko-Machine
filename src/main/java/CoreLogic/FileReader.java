@@ -31,8 +31,6 @@ public class FileReader {
                 throw new RuntimeException(e);
             }
     }
-
-
     public FileReader() throws FileNotFoundException {
     }
 }
