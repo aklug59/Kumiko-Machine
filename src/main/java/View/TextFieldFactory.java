@@ -8,14 +8,14 @@ public class TextFieldFactory {
     public static void makeTextFields() {
 
         // Make angle field
-        GUI.angleTextField.setText(String.valueOf(GUI.currAngle));
+        GUI.angleTextField.setText(String.valueOf(GUI.currGUIAngle));
         GUI.angleTextField.setName("angleTextField");
         GUI.angleTextField.setBounds(500,400, 50,50);
         GUI.angleTextField.setHorizontalAlignment(JTextField.CENTER);
         GUI.angleTextField.addActionListener(GUI.guiInstance);
 
         // Make position field
-        GUI.positionTextField.setText(String.valueOf(GUI.currPosition));
+        GUI.positionTextField.setText(String.valueOf(GUI.currGUIPosition));
         GUI.positionTextField.setName("positionTextField");
         GUI.positionTextField.setBounds(500,300, 50,50);
         GUI.positionTextField.setHorizontalAlignment(JTextField.CENTER);

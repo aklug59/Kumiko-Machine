@@ -35,4 +35,6 @@ public class Adapter {
         return adapterLocalModelFascade.getProjectName();
     }
 
+    public double getCutLength() { return adapterLocalModelFascade.getCutLength(); }
+
 }

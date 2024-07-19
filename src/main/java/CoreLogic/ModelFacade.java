@@ -50,5 +50,7 @@ public class ModelFacade {
             Piece.resetLengths();
     }
     public String getProjectName() { return FileReader.getProjectName(); }
+    public double getCutLength() {return Actuator.getCutLength();}
 
     }
+

@@ -38,8 +38,8 @@ public class GUI implements ActionListener, KeyListener {
     protected static JLabel projectNameLabel = new JLabel("");
     protected static JLabel progressBarLabel = new JLabel("Piece Progress");
     protected static Font boldFont = new Font("BOLD",Font.BOLD, anglePlusButton.getFont().getSize());
-    protected static double currAngle = 90;
-    protected static int currPosition = 0;
+    protected static double currGUIAngle = 90;
+    protected static int currGUIPosition = 0;
     double startingLength;
     double currLength;
     double targetLength;
@@ -66,51 +66,49 @@ public class GUI implements ActionListener, KeyListener {
     }
 
     public void nudgeAngle(String direction) throws InterruptedException {
-        currAngle = Double.parseDouble(angleTextField.getText());
+        currGUIAngle = Double.parseDouble(angleTextField.getText());
 
         switch(direction) {
 
             case UP:
-                if (currAngle <= 89.50 ) {
-                    guiLocalAdapter.angleUpdate(currAngle + .5 );
-                    angleTextField.setText(String.valueOf(currAngle + .5));
+                if (currGUIAngle <= 89.50 ) {
+                    guiLocalAdapter.angleUpdate(currGUIAngle + .5 );
+                    angleTextField.setText(String.valueOf(currGUIAngle + .5));
                 } else { errorWarning(BAD_ANGLE); }
                 break;
             case DOWN:
-                if (currAngle >= .50 ) {
-                    guiLocalAdapter.angleUpdate(currAngle - .5 );
-                    angleTextField.setText(String.valueOf(currAngle - .5));
+                if (currGUIAngle >= .50 ) {
+                    guiLocalAdapter.angleUpdate(currGUIAngle - .5 );
+                    angleTextField.setText(String.valueOf(currGUIAngle - .5));
                 } else { errorWarning(BAD_ANGLE); }
                 break;
         }
     }
     public void nudgePosition (int direction) throws InterruptedException {
-        currPosition = Integer.parseInt(positionTextField.getText());
-        if (currPosition >= 251 && direction > 0 || currPosition <= 4 && direction < 0) {
+        currGUIPosition = Integer.parseInt(positionTextField.getText());
+        if (currGUIPosition >= 251 && direction > 0 || currGUIPosition <= 4 && direction < 0) {
             errorWarning(BAD_POSITION);
 
         } else {
             if (direction > 0) {
-                currPosition = currPosition + 5;
-                positionTextField.setText(String.valueOf(currPosition));
-                guiLocalAdapter.updatePosition(currPosition);
+                currGUIPosition = currGUIPosition + 5;
+                positionTextField.setText(String.valueOf(currGUIPosition));
+                guiLocalAdapter.updatePosition(currGUIPosition);
 
             } else {
-                currPosition = currPosition - 5;
-                positionTextField.setText(String.valueOf(currPosition));
-                guiLocalAdapter.updatePosition(currPosition);
+                currGUIPosition = currGUIPosition - 5;
+                positionTextField.setText(String.valueOf(currGUIPosition));
+                guiLocalAdapter.updatePosition(currGUIPosition);
             }
         }
     }
-    public double getCutLength() { return strokeLength - (inchPerStep * currPosition); }
-
     public void updateGUITime(int currTime) {
         String currTimeString;
         currTimeString = String.valueOf(currTime);
         pieceTimeTextField.setText(currTimeString);
     }
 
-    public void resetPieceValues() {
+    public void resetGUIPieceValues() {
         startingLengthTextField.setText(ZERO);
         currLengthTextField.setText(ZERO);
         targetLengthTextField.setText(ZERO);
@@ -170,10 +168,10 @@ public class GUI implements ActionListener, KeyListener {
                 }
                 break;
             case POSITION_TEXTFIELD:
-                currPosition = Integer.parseInt(positionTextField.getText());
-                if (currPosition >= 0 && currPosition <= 255) {
+                currGUIPosition = Integer.parseInt(positionTextField.getText());
+                if (currGUIPosition >= 0 && currGUIPosition <= 255) {
                     try {
-                        guiLocalAdapter.updatePosition(currPosition);
+                        guiLocalAdapter.updatePosition(currGUIPosition);
                         frame.requestFocusInWindow();
                     } catch (InterruptedException ex) {
                         throw new RuntimeException(ex);
@@ -183,15 +181,15 @@ public class GUI implements ActionListener, KeyListener {
                 }
                     break;
             case ANGLE_TEXTFIELD:
-                currAngle = Double.parseDouble(angleTextField.getText());
-                if (currAngle > 90 || currAngle < 0) {
+                currGUIAngle = Double.parseDouble(angleTextField.getText());
+                if (currGUIAngle > 90 || currGUIAngle < 0) {
                     errorWarning(BAD_ANGLE);
                     frame.requestFocusInWindow();
                 } else {
                     angleTextField.getText();
                     frame.requestFocusInWindow();
                     try {
-                        guiLocalAdapter.angleUpdate(currAngle);
+                        guiLocalAdapter.angleUpdate(currGUIAngle);
                     } catch (InterruptedException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -214,9 +212,9 @@ public class GUI implements ActionListener, KeyListener {
                 guiLocalAdapter.startTimer();
                 firstCut = true;
             }
-            currLength = getCutLength();
+            currLength = guiLocalAdapter.getCutLength();
             currLengthTextField.setText(String.valueOf(currLength));
-            guiLocalAdapter.updatePiece(getCutLength(), CURRENT);
+            guiLocalAdapter.updatePiece(currLength, CURRENT);
             ProgressBarFactory.updateBar(getNewProgressBarValue());
 
         }
@@ -228,7 +226,7 @@ public class GUI implements ActionListener, KeyListener {
             } else {
                 guiLocalAdapter.savePiece();
                 ProgressBarFactory.updateBar(0);
-                resetPieceValues();
+                resetGUIPieceValues();
             }
         }
     }
