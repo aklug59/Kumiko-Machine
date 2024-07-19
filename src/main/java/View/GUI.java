@@ -12,7 +12,7 @@ import static Adapter.Adapter.getAdapter;
 import static CoreLogic.Constants.*;
 
 
-public class GUI implements ActionListener, KeyListener {
+public class GUI extends ListeningAdapter {
 
     protected static GUI guiInstance = new GUI();
     protected static Adapter guiLocalAdapter = getAdapter();
@@ -84,6 +84,7 @@ public class GUI implements ActionListener, KeyListener {
                 break;
         }
     }
+
     public void nudgePosition (int direction) throws InterruptedException {
         currGUIPosition = Integer.parseInt(positionTextField.getText());
         if (currGUIPosition >= 251 && direction > 0 || currGUIPosition <= 4 && direction < 0) {
@@ -102,6 +103,7 @@ public class GUI implements ActionListener, KeyListener {
             }
         }
     }
+
     public void updateGUITime(int currTime) {
         String currTimeString;
         currTimeString = String.valueOf(currTime);
@@ -230,9 +232,7 @@ public class GUI implements ActionListener, KeyListener {
             }
         }
     }
-
     public void errorWarning(String warning) {
-
         switch(warning) {
 
             case CURR_LENGTH_TEXTFIELD:
@@ -277,9 +277,9 @@ public class GUI implements ActionListener, KeyListener {
         java.util.Timer currTimer = new Timer();
         currTimer.schedule(task, (long) 5000);
     }
-    @Override
+    /*@Override
     public void keyReleased(KeyEvent e) {}
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {}*/
 
 }
