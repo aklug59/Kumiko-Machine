@@ -199,7 +199,6 @@ public class GUI extends ListeningAdapter {
         double newProgressVal = Math.round(((startingLength - currLength) / (startingLength - targetLength)) * 100);
         return (int) newProgressVal;
     }
-
     public void keyPressed(KeyEvent e) {
 
         int currKey = e.getKeyCode();
@@ -262,7 +261,6 @@ public class GUI extends ListeningAdapter {
                 resetErrorTextField();
         }
     }
-
     public void resetErrorTextField() {
         TimerTask task = new TimerTask() {
             public void run() {

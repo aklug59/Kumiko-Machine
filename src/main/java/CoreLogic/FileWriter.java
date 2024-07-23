@@ -14,7 +14,6 @@ public class FileWriter {
     public static XSSFSheet currSheet;
     public static int currBlankRowNumber = 0;
     private static final String filePath = "C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx";
-
     public static Row saveRow;
 
     public static void writePiece(double startingLength, float time) {
