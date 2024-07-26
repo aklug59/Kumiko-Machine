@@ -8,9 +8,11 @@ import static CoreLogic.Constants.*;
 public class ModelFacade {
 
     Adapter ModelFascadeLocalAdapter = getAdapter();
+    public static final float timeDivisor = 1000f;
     private static ModelFacade modelFacadeInstance;
     private static CutterHead CutterHead = new CutterHead();
     private Actuator Actuator = new Actuator();
+
     //Singleton pattern constructor and getModeFacadeMethod
     private ModelFacade() {}
 
@@ -22,7 +24,11 @@ public class ModelFacade {
         return modelFacadeInstance;
     }
     public void changeAngle(double newAngle) throws InterruptedException { CutterHead.setAngle(newAngle); }
+
+    public static boolean checkAngleBounds(double newAngle) {return CutterHead.checkAngleBounds(newAngle);}
     public void changePosition(int position) throws InterruptedException { Actuator.setPosition(position); }
+
+    public boolean checkPositionBounds(int position, int direction) {return Actuator.checkPositionBounds(position, direction);}
 
     public void changePieceLength(double length, String value) {
         switch(value) {
@@ -45,7 +51,7 @@ public class ModelFacade {
 
     public void savePiece() {
         ProjectTimer.stopTimer();
-        float pieceConstructionTime = ProjectTimer.getPieceTime() / 1000f;
+        float pieceConstructionTime = ProjectTimer.getPieceTime() / timeDivisor;
         ProjectTimer.resetTimer();
         FileWriter.writePiece(Piece.startingLength,pieceConstructionTime);
         Piece.resetLengths();

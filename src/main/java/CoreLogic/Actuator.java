@@ -16,6 +16,15 @@ public class Actuator {
         ardFac.newPosition(position);
     }
 
+    public boolean checkPositionBounds(int position, int direction) {
+
+        if (position > 255 || position < 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public double getCutLength() { return strokeLength - (inchPerStep * position); }
 
 }

@@ -5,7 +5,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class FileWriter {
     public static FileInputStream currInput;
@@ -13,6 +15,10 @@ public class FileWriter {
     public static XSSFWorkbook currWorkbook;
     public static XSSFSheet currSheet;
     public static int currBlankRowNumber = 0;
+    public static final int firstRow = 1;
+    public static final int secondRow = 2;
+    public static final int thirdRow = 3;
+    public static final int sheetIndex = 0;
     private static final String filePath = "C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx";
     public static Row saveRow;
 
@@ -28,10 +34,12 @@ public class FileWriter {
             /*Get the current blank row from the sheet. Set the time and material variables appropriately. Save to file
              * and close output stream.
              */
-            saveRow = currSheet.getRow(currBlankRowNumber);
-            Cell cell = saveRow.createCell(2);
+            saveRow = currSheet.createRow(currBlankRowNumber);
+            Cell testCell = saveRow.createCell(firstRow);
+            testCell.setCellValue(currBlankRowNumber);
+            Cell cell = saveRow.createCell(secondRow);
             cell.setCellValue(time);
-            cell = saveRow.createCell(3);
+            cell = saveRow.createCell(thirdRow);
             cell.setCellValue(startingLength);
             FileOutputStream outFile = new FileOutputStream(filePath);
             currWorkbook.write(outFile);
@@ -48,7 +56,7 @@ public class FileWriter {
         try {
             currInput = new FileInputStream(filePath);
             currWorkbook = new XSSFWorkbook(currInput);
-            currSheet = currWorkbook.getSheetAt(0);
+            currSheet = currWorkbook.getSheetAt(sheetIndex);
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -57,7 +65,7 @@ public class FileWriter {
          * otherwise if the cell contains either a String or a number, iterate currBlankRowNumber
          */
         for (Row row : currSheet) {
-            cell = row.getCell(2);
+            cell = row.getCell(secondRow);
             if (cell == null) {
                 break;
             }

@@ -13,11 +13,21 @@ public class CutterHead {
     private static int motorDirection = 0;
     private static int steps = 0;
     final static char initilizer = 1;
+    final static int CCW = -1;
+    final static int CW = 1;
     final static double stepsPerDegree = 8.8888;
     static ArduinoInterface ardFac = getArduinoFacade();
 
 
     public CutterHead() {}
+
+    public static boolean checkAngleBounds(double currAngle) {
+        if (currAngle > 90 || currAngle < 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public static void setAngle(double angle) throws InterruptedException {
         //If a connection between the computer and the Arduino has not yet been made, make it.
@@ -32,10 +42,10 @@ public class CutterHead {
 
         // Set motor direction based on current angle.
         if (angle < currAngle) {
-            motorDirection = -1;
+            motorDirection = CCW;
         }
         else if (angle > currAngle){
-            motorDirection = 1;
+            motorDirection = CW;
         }
 
         /*Send the arduino the motor direction followed by the number of steps to move. Sleep 800ms between both

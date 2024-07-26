@@ -1,15 +1,17 @@
 package CoreLogic;
 
+import static CoreLogic.Constants.negativeOne;
+
 public class Piece {
-    public static double startingLength = -1;
-    public static double currLength = -1;
-    public static double targetLength = -1;
+    public static double startingLength = negativeOne;
+    public static double currLength = negativeOne;
+    public static double targetLength = negativeOne;
     public Piece() {}
 
     public static void resetLengths() {
-        startingLength = -1;
-        currLength = -1;
-        targetLength = -1;
+        startingLength = negativeOne;
+        currLength = negativeOne;
+        targetLength = negativeOne;
     }
 
 

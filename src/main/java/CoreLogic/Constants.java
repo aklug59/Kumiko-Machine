@@ -7,11 +7,23 @@ public class Constants {
     public static final String BAD_POSITION = "badPosition";
     public static final String NO_PIECE = "noPiece";
 
+    //INTEGERS
+    public static final int percentModifier = 100;
+    public static final int progressBarZero = 0;
+
+    public static final double angleNudge = .50;
+    public static final int positionNudge = 5;
+
+    public static final long errorTimeout = 5000;
+
 
     //DIRECTIONS
     public static final String UP = "up";
     public static final String DOWN = "down";
     public static final String ZERO = "0";
+    public static final int negativeOne = -1;
+    public static final int BACK = -1;
+    public static final int FORWARD = 1;
     public static final String START = "start";
     public static final String CURRENT = "current";
     public static final String TARGET = "target";

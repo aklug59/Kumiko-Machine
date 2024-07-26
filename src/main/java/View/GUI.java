@@ -4,7 +4,8 @@ import Adapter.Adapter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -68,15 +69,15 @@ public class GUI extends ListeningAdapter {
         switch(direction) {
 
             case UP:
-                if (currGUIAngle <= 89.50 ) {
-                    guiLocalAdapter.angleUpdate(currGUIAngle + .5 );
-                    angleTextField.setText(String.valueOf(currGUIAngle + .5));
+                if (guiLocalAdapter.checkAngleBounds(currGUIAngle + angleNudge)) {
+                    guiLocalAdapter.angleUpdate(currGUIAngle + angleNudge);
+                    angleTextField.setText(String.valueOf(currGUIAngle + angleNudge));
                 } else { errorWarning(BAD_ANGLE); }
                 break;
             case DOWN:
-                if (currGUIAngle >= .50 ) {
-                    guiLocalAdapter.angleUpdate(currGUIAngle - .5 );
-                    angleTextField.setText(String.valueOf(currGUIAngle - .5));
+                if (guiLocalAdapter.checkAngleBounds(currGUIAngle - angleNudge)) {
+                    guiLocalAdapter.angleUpdate(currGUIAngle - angleNudge);
+                    angleTextField.setText(String.valueOf(currGUIAngle - angleNudge));
                 } else { errorWarning(BAD_ANGLE); }
                 break;
         }
@@ -84,17 +85,22 @@ public class GUI extends ListeningAdapter {
 
     public void nudgePosition (int direction) throws InterruptedException {
         currGUIPosition = Integer.parseInt(positionTextField.getText());
-        if (currGUIPosition >= 251 && direction > 0 || currGUIPosition <= 4 && direction < 0) {
-            errorWarning(BAD_POSITION);
-
+        int nextPosition;
+        if (direction == FORWARD) {
+            nextPosition = currGUIPosition + positionNudge;
         } else {
-            if (direction > 0) {
-                currGUIPosition = currGUIPosition + 5;
+            nextPosition = currGUIPosition - positionNudge;
+        }
+        if (guiLocalAdapter.checkPositionBounds(nextPosition, direction)) {
+            errorWarning(BAD_POSITION);
+        } else {
+            if (direction == FORWARD) {
+                currGUIPosition = currGUIPosition + positionNudge;
                 positionTextField.setText(String.valueOf(currGUIPosition));
                 guiLocalAdapter.updatePosition(currGUIPosition);
 
             } else {
-                currGUIPosition = currGUIPosition - 5;
+                currGUIPosition = currGUIPosition - positionNudge;
                 positionTextField.setText(String.valueOf(currGUIPosition));
                 guiLocalAdapter.updatePosition(currGUIPosition);
             }
@@ -119,55 +125,57 @@ public class GUI extends ListeningAdapter {
         String currName = String.valueOf(currObject.getName());
 
         switch(currName) {
-            case STARTING_LENGTH_TEXTFIELD:
+            case STARTING_LENGTH_TEXTFIELD -> {
                 startingLength = Double.parseDouble(startingLengthTextField.getText());
                 frame.requestFocusInWindow();
                 guiLocalAdapter.updatePiece(startingLength, START);
-                break;
-            case TARGET_LENGTH_TEXTFIELD:
+            }
+
+            case TARGET_LENGTH_TEXTFIELD -> {
                 targetLength = Double.parseDouble(targetLengthTextField.getText());
                 frame.requestFocusInWindow();
                 guiLocalAdapter.updatePiece(targetLength, TARGET);
-                break;
-            case CURR_LENGTH_TEXTFIELD:
+            }
+
+            case CURR_LENGTH_TEXTFIELD -> {
                 errorWarning(currName);
                 frame.requestFocusInWindow();
-                break;
-            case ANGLE_PLUS_BUTTON:
+            }
+            case ANGLE_PLUS_BUTTON -> {
                 try {
                     nudgeAngle(UP);
                     frame.requestFocusInWindow();
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }
-                break;
-            case ANGLE_MINUS_BUTTON:
+            }
+            case ANGLE_MINUS_BUTTON -> {
                 try {
                     nudgeAngle(DOWN);
                     frame.requestFocusInWindow();
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }
-                break;
-            case POSITION_MINUS_BUTTON:
+            }
+            case POSITION_MINUS_BUTTON -> {
                 try {
-                    nudgePosition(-1);
+                    nudgePosition(BACK);
                     frame.requestFocusInWindow();
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }
-                break;
-            case POSITION_PLUS_BUTTON:
+            }
+            case POSITION_PLUS_BUTTON -> {
                 try {
-                    nudgePosition(1);
+                    nudgePosition(FORWARD);
                     frame.requestFocusInWindow();
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }
-                break;
-            case POSITION_TEXTFIELD:
+            }
+            case POSITION_TEXTFIELD -> {
                 currGUIPosition = Integer.parseInt(positionTextField.getText());
-                if (currGUIPosition >= 0 && currGUIPosition <= 255) {
+                if (!guiLocalAdapter.checkPositionBounds(currGUIPosition,FORWARD)) {
                     try {
                         guiLocalAdapter.updatePosition(currGUIPosition);
                         frame.requestFocusInWindow();
@@ -177,10 +185,10 @@ public class GUI extends ListeningAdapter {
                 } else {
                     errorWarning(BAD_POSITION);
                 }
-                    break;
-            case ANGLE_TEXTFIELD:
+            }
+            case ANGLE_TEXTFIELD -> {
                 currGUIAngle = Double.parseDouble(angleTextField.getText());
-                if (currGUIAngle > 90 || currGUIAngle < 0) {
+                if (!guiLocalAdapter.checkAngleBounds(currGUIAngle)) {
                     errorWarning(BAD_ANGLE);
                     frame.requestFocusInWindow();
                 } else {
@@ -192,11 +200,12 @@ public class GUI extends ListeningAdapter {
                         throw new RuntimeException(ex);
                     }
                 }
+            }
         }
     }
 
     public int getNewProgressBarValue() {
-        double newProgressVal = Math.round(((startingLength - currLength) / (startingLength - targetLength)) * 100);
+        double newProgressVal = Math.round(((startingLength - currLength) / (startingLength - targetLength)) * percentModifier);
         return (int) newProgressVal;
     }
     public void keyPressed(KeyEvent e) {
@@ -222,7 +231,7 @@ public class GUI extends ListeningAdapter {
                 errorWarning(NO_PIECE);
             } else {
                 guiLocalAdapter.savePiece();
-                ProgressBarFactory.updateBar(0);
+                ProgressBarFactory.updateBar(progressBarZero);
                 resetGUIPieceValues();
             }
         }
@@ -230,35 +239,31 @@ public class GUI extends ListeningAdapter {
     public void errorWarning(String warning) {
         //String switch for error handling
         switch(warning) {
-
-            case CURR_LENGTH_TEXTFIELD:
+            case CURR_LENGTH_TEXTFIELD -> {
                 errorTextField.setBackground(Color.RED);
                 errorTextField.setText("Do not touch the current length!");
                 resetErrorTextField();
-                break;
-
-            case NO_PIECE:
+            }
+            case NO_PIECE -> {
                 errorTextField.setBackground(Color.red);
                 errorTextField.setText("There is no piece to save!");
                 resetErrorTextField();
-                break;
-
-            case BAD_POSITION:
+            }
+            case BAD_POSITION -> {
                 errorTextField.setBackground(Color.RED);
                 errorTextField.setText("Position must be between 0 - 255!");
                 resetErrorTextField();
-                break;
-
-            case BAD_ANGLE:
+            }
+            case BAD_ANGLE -> {
                 errorTextField.setBackground(Color.RED);
                 errorTextField.setText("Angle must be between 0 and 90!");
                 resetErrorTextField();
-                break;
-
-            default:
+            }
+            default -> {
                 errorTextField.setBackground(Color.RED);
                 errorTextField.setText("An error occurred!");
                 resetErrorTextField();
+            }
         }
     }
     public void resetErrorTextField() {
@@ -270,6 +275,6 @@ public class GUI extends ListeningAdapter {
         };
 
         java.util.Timer currTimer = new Timer();
-        currTimer.schedule(task, (long) 5000);
+        currTimer.schedule(task, errorTimeout);
     }
 }
