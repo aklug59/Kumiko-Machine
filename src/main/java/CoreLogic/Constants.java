@@ -10,10 +10,8 @@ public class Constants {
     //INTEGERS
     public static final int percentModifier = 100;
     public static final int progressBarZero = 0;
-
     public static final double angleNudge = .50;
     public static final int positionNudge = 5;
-
     public static final long errorTimeout = 5000;
 
 

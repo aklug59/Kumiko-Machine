@@ -3,6 +3,7 @@ package View;
 import java.awt.*;
 
 import static View.GUI.projectNameLabel;
+//FACTORY METHOD TO HOLD ALL LABEL RELATED COMPONENTS / LOGIC OF THE GUI
 
 public class LabelFactory {
 

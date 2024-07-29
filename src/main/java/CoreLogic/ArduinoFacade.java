@@ -23,30 +23,31 @@ public class ArduinoFacade implements ArduinoInterface {
         return arduinoFascadeInstance;
     }
 
+    //Open a connection to the arduino.
     public void openConnection() {
         arduino.openConnection();
     }
 
-    public void closeConnection() {
-        scnr.close();
-        arduino.closeConnection();
-    }
-
-    public void stepAmount(int steps) {
-        String stringAngle = String.valueOf(steps);
-        arduino.serialWrite(stringAngle);
-    }
-
+    //Tell the arduino to move either the cutterhead or the actuator. CutterHead = 1, Actuator = 2.
     public void initial(int x) {
         String stringX = String.valueOf(x);
         arduino.serialWrite(stringX);
     }
 
+    //Tell the arduino how many steps to move the CutterHead.
+    public void stepAmount(int steps) {
+        String stringAngle = String.valueOf(steps);
+        arduino.serialWrite(stringAngle);
+    }
+
+    //Tell the arduino how far to move the actuator.
     public void newPosition(int position) {
         String positionString = String.valueOf(position);
         arduino.serialWrite(positionString);
     }
 
+
+    //Testing method, not used outside of initial cutterhead testing via CutterHeadExample class.
     public String read() {
         return arduino.serialRead();
     }

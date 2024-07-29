@@ -14,7 +14,7 @@ import static CoreLogic.Constants.*;
 
 
 public class GUI extends ListeningAdapter {
-
+    // Variable declarations
     protected static GUI guiInstance = new GUI();
     protected static Adapter guiLocalAdapter = getAdapter();
     protected static JFrame frame = new JFrame();
@@ -63,6 +63,7 @@ public class GUI extends ListeningAdapter {
         ProgressBarFactory.makeProgressBars();
     }
 
+    // Move the cutterhead +/- .5 degree based on which GUI button was pressed.
     public void nudgeAngle(String direction) throws InterruptedException {
         currGUIAngle = Double.parseDouble(angleTextField.getText());
 
@@ -83,6 +84,7 @@ public class GUI extends ListeningAdapter {
         }
     }
 
+    //Moves the actuator +/- 5 based on GUI button press.
     public void nudgePosition (int direction) throws InterruptedException {
         currGUIPosition = Integer.parseInt(positionTextField.getText());
         int nextPosition;
@@ -107,12 +109,14 @@ public class GUI extends ListeningAdapter {
         }
     }
 
+    //Updates the display to iterate the pieceTimeTextField. This method is scheduled on 1 second calls from ProjectTimer.
     public void updateGUITime(int currTime) {
         String currTimeString;
         currTimeString = String.valueOf(currTime);
         pieceTimeTextField.setText(currTimeString);
     }
 
+    //Simple reset method for resetting the GUI piece text fields to "0".
     public void resetGUIPieceValues() {
         startingLengthTextField.setText(ZERO);
         currLengthTextField.setText(ZERO);
@@ -120,6 +124,9 @@ public class GUI extends ListeningAdapter {
         pieceTimeTextField.setText(ZERO);
     }
 
+    /*Listener for action events on the various GUI components. The object on which the event occured is determined and
+    * a switch delegates to the appropriate method calls.
+    */
     public void actionPerformed(ActionEvent e) {
         JComponent currObject = (JComponent) e.getSource();
         String currName = String.valueOf(currObject.getName());
@@ -204,10 +211,14 @@ public class GUI extends ListeningAdapter {
         }
     }
 
+    //After a cut has been made, the progress bar is updated. This method determines and returns that value.
     public int getNewProgressBarValue() {
         double newProgressVal = Math.round(((startingLength - currLength) / (startingLength - targetLength)) * percentModifier);
         return (int) newProgressVal;
     }
+
+    // KeyListener for hotkey events. HOTKEYS - > "c" (cut made) and "n" (new piece)
+
     public void keyPressed(KeyEvent e) {
 
         int currKey = e.getKeyCode();
@@ -236,6 +247,7 @@ public class GUI extends ListeningAdapter {
             }
         }
     }
+    //Error handling method. Switch determines appropriate action based on string expression passed from caller.
     public void errorWarning(String warning) {
         //String switch for error handling
         switch(warning) {
@@ -266,6 +278,7 @@ public class GUI extends ListeningAdapter {
             }
         }
     }
+    //Reset the error textfield 5 seconds after an error has been thrown.
     public void resetErrorTextField() {
         TimerTask task = new TimerTask() {
             public void run() {

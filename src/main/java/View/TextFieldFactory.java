@@ -3,6 +3,8 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
+//FACTORY METHOD TO HOLD ALL TEXTFIELD RELATED COMPONENTS / LOGIC OF THE GUI
+
 public class TextFieldFactory {
 
     public static void makeTextFields() {

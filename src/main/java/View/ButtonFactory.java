@@ -1,5 +1,7 @@
 package View;
 
+//FACTORY METHOD TO HOLD ALL BUTTON RELATED COMPONENTS / LOGIC OF THE GUI
+
 public class ButtonFactory {
 
     public static void makeButtons() {

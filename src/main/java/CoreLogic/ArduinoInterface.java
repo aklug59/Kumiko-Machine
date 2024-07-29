@@ -8,8 +8,6 @@ public interface ArduinoInterface {
 
     public void initial(int x);
 
-    public void closeConnection();
-
     public void newPosition(int position);
 
     public String read();

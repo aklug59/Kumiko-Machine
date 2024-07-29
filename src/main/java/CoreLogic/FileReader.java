@@ -10,11 +10,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
 public class FileReader {
+
+    //Variable declarations
     public static FileInputStream currFile;
     public static XSSFWorkbook currWorkbook;
     public static XSSFSheet currSheet;
     private static final String filePath = "C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx";
 
+    //Get the name of the project from the Excel File.
     public static String getProjectName() {
 
             try {

@@ -1,21 +1,19 @@
 package examples;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import arduino.Arduino;
+import arduino.PortDropdownMenu;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import arduino.*;
 
 /*
  * IMPORTANT: Please download and import the Arduino.jar and jSerialComm-1.3.11.jar files from my GitHub or SourceForge before running.
  * NOTE: Before running, please upload and run the attached Arduino code to your board.
  */
+
+//TEST METHOD TO CONFIRM THAT THE ARDUINO COULD BE CONTROLLED VIA THE COMPUTER VIA A BASIC GUI.
 
 public class LEDExampleWithGUI {
 	static Arduino arduino;

@@ -9,6 +9,7 @@ import static CoreLogic.Constants.*;
 *
 */
 public class CutterHead {
+    //Variable declarations
     private static double currAngle = 90;
     private static int motorDirection = 0;
     private static int steps = 0;
@@ -17,10 +18,9 @@ public class CutterHead {
     final static int CW = 1;
     final static double stepsPerDegree = 8.8888;
     static ArduinoInterface ardFac = getArduinoFacade();
-
-
     public CutterHead() {}
 
+    //Check the bounds of the new angle to ensure they are between 0 - 90 degrees.
     public static boolean checkAngleBounds(double currAngle) {
         if (currAngle > 90 || currAngle < 0) {
             return false;
@@ -29,6 +29,7 @@ public class CutterHead {
         }
     }
 
+    //Set the CutterHead to a new angle.
     public static void setAngle(double angle) throws InterruptedException {
         //If a connection between the computer and the Arduino has not yet been made, make it.
         if (currentState.equals(CLOSED)) {

@@ -4,6 +4,8 @@ import arduino.Arduino;
 
 import java.util.*;
 
+
+//TESTING METHOD FOR INITIAL TESTING OF ARDUINO / COMPUTER CONNECTION VIA SERIAL.
 public class BasicLEDExample {
 
 	public static void main(String[] args) throws InterruptedException {
