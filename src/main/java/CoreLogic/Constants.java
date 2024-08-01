@@ -1,5 +1,6 @@
 package CoreLogic;
 
+/** Constants used throughout the various classes are declared here for cleanliness*/
 public class Constants {
 
     //ERRORS

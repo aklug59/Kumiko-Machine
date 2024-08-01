@@ -22,7 +22,7 @@ public class FileWriter {
     private static final String filePath = "C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx";
     public static Row saveRow;
 
-    //Write the information from a finished piece into the Excel file.
+    /**Write the information from a finished piece into the Excel file.*/
     public static void writePiece(double startingLength, float time) {
         try {
         /* On the first write, the currBlankRowNumber will be 0. Call the findBlankRow method to populate the currBlankRowNumber
@@ -52,7 +52,7 @@ public class FileWriter {
         }
     }
 
-    //Find the next blank row where saved piece information will be input.
+    /**Find the next blank row where saved piece information will be input.*/
     public static void findBlankRow() {
         //Make new FileInputStream, workbook and get the first sheet from the file
         try {

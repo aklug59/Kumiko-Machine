@@ -1,4 +1,5 @@
 package CoreLogic;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,18 +20,18 @@ public class ProjectTimer {
 
     public ProjectTimer() {}
 
-    //Stop the current timer and store the endTime.
+    /**Stop the current timer and store the endTime.*/
     protected static void stopTimer() {
         guiTimerTask.cancel();
         endTime = System.currentTimeMillis();
     }
 
-    //Calculate the time it took to make the current piece.
+    /**Calculate the time it took to make the current piece.*/
     protected static long getPieceTime() {
         return endTime - startTime;
     }
 
-    //Reset the timer to zero and start iteration.
+    /**Reset the timer to zero and start iteration.*/
     protected static void resetTimer() {
         startTime = System.currentTimeMillis();
         Timer projectTimer = new Timer();
@@ -45,7 +46,7 @@ public class ProjectTimer {
     }
 
 
-    /*Inform the ModelFacade that a timer update has occured (every second). New time is passed back up the
+    /**Inform the ModelFacade that a timer update has occured (every second). New time is passed back up the
      * chain to GUI where timer textField is changed.
      */
     protected static void GUITimeUpdate() {

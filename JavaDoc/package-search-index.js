@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"Adapter"},{"l":"All Packages","u":"allpackages-index.html"},{"l":"CoreLogic"},{"l":"examples"},{"l":"View"}];updateSearchResults();

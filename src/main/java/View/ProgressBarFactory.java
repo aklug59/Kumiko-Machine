@@ -9,6 +9,7 @@ public class ProgressBarFactory {
     static final int BAR_MINIMUM = 0;
     static final int BAR_MAXIMUM = 100;
 
+    /** Make all the progress bars associated with the GUI*/
     public static void makeProgressBars() {
         GUI.progressBar.setMinimum(BAR_MINIMUM);
         GUI.progressBar.setMaximum(BAR_MAXIMUM);
@@ -17,6 +18,7 @@ public class ProgressBarFactory {
         GUI.progressBar.setForeground(Color.green);
     }
 
+    /** Update the progress bars current value*/
     public static void updateBar(int newValue) {
         GUI.progressBar.setValue(newValue);
     }

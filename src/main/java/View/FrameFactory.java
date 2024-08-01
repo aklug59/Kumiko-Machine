@@ -7,10 +7,11 @@ import java.util.List;
 
 import static View.GUI.*;
 //FACTORY METHOD TO HOLD ALL FRAME RELATED COMPONENTS / LOGIC OF THE GUI
+
 public class FrameFactory {
     static List<Component> compList = new ArrayList<Component>();
 
-
+    /** Make all the frames associated with the GUI*/
     public static void makeFrame() {
 
         GUI.frame.setSize(1000,1000);

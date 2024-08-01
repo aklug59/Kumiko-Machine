@@ -7,6 +7,8 @@ import java.awt.*;
 
 public class TextFieldFactory {
 
+    /** Make all the text fields associated with the GUI*/
+
     public static void makeTextFields() {
 
         // Make angle field

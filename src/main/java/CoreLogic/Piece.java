@@ -10,7 +10,7 @@ public class Piece {
     public static double targetLength = negativeOne;
     public Piece() {}
 
-    //Reset all piece lengths.
+    /**Reset all piece lengths.*/
     public static void resetLengths() {
         startingLength = negativeOne;
         currLength = negativeOne;

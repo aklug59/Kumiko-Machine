@@ -16,8 +16,9 @@ public class FileReader {
     public static XSSFWorkbook currWorkbook;
     public static XSSFSheet currSheet;
     private static final String filePath = "C://Users//aklug//Desktop//Kumiko Project//KumikoMachine//Excel Sheets//Kumiko Example.xlsx";
+    public FileReader() throws FileNotFoundException {}
 
-    //Get the name of the project from the Excel File.
+    /**Get the name of the project from the Excel File.*/
     public static String getProjectName() {
 
             try {
@@ -34,6 +35,5 @@ public class FileReader {
                 throw new RuntimeException(e);
             }
     }
-    public FileReader() throws FileNotFoundException {
-    }
+
 }

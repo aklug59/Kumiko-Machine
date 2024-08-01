@@ -12,7 +12,7 @@ public class Actuator {
     static ArduinoInterface ardFac = getArduinoFacade();
     public Actuator() {};
 
-    /* Move the actuator to the new position via the ArduinoFacade class. Sleep 800 ms between writing
+    /** Move the actuator to the new position via the ArduinoFacade class. Sleep 800 ms between writing
      * to serial to allow the arduino to process.
      */
     public void setPosition(int newPosition) throws InterruptedException {
@@ -22,9 +22,9 @@ public class Actuator {
         ardFac.newPosition(position);
     }
 
-    /* This method confirms that a new position is not outside the actuators bounds. Current bounds are
-     *  Full retraction = 0, Full extension = 255.
-     */
+    /** Confirm that the new position is within the actuators limits. Current bounds are
+     * Full retraction = 0, Full extension = 255
+     * */
     public boolean checkPositionBounds(int position, int direction) {
 
         if (position > 255 || position < 0) {
@@ -34,7 +34,7 @@ public class Actuator {
         }
     }
 
-    //Calculate and return the new length of the piece after a cut has been made.
+    /** Calculate and return the new length of a piece after a cut has been made*/
     public double getCutLength() { return strokeLength - (inchPerStep * position); }
 
 }

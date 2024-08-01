@@ -7,6 +7,8 @@ import static View.GUI.projectNameLabel;
 
 public class LabelFactory {
 
+    /** Make all the labels associated with the GUI*/
+
     public static void makeLabels() {
 
         GUI.angleLabel.setBounds(485,335,100,100);

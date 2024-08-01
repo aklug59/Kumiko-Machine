@@ -20,7 +20,7 @@ public class CutterHead {
     static ArduinoInterface ardFac = getArduinoFacade();
     public CutterHead() {}
 
-    //Check the bounds of the new angle to ensure they are between 0 - 90 degrees.
+    /**Check the bounds of the new angle to ensure they are between 0 - 90 degrees.*/
     public static boolean checkAngleBounds(double currAngle) {
         if (currAngle > 90 || currAngle < 0) {
             return false;
@@ -29,7 +29,7 @@ public class CutterHead {
         }
     }
 
-    //Set the CutterHead to a new angle.
+    /**Set the CutterHead to a new angle.*/
     public static void setAngle(double angle) throws InterruptedException {
         //If a connection between the computer and the Arduino has not yet been made, make it.
         if (currentState.equals(CLOSED)) {
@@ -37,11 +37,11 @@ public class CutterHead {
             currentState = OPEN;
         }
 
-        /*Send the arduino an integer indicating StepperMotor vs.
+        /**Send the arduino an integer indicating StepperMotor vs.
         actuator control. 1 = StepperMotor, 2 = actuator. */
         ardFac.initial(initilizer);
 
-        // Set motor direction based on current angle.
+        /**Set motor direction based on current angle.*/
         if (angle < currAngle) {
             motorDirection = CCW;
         }
@@ -49,7 +49,7 @@ public class CutterHead {
             motorDirection = CW;
         }
 
-        /*Send the arduino the motor direction followed by the number of steps to move. Sleep 800ms between both
+        /**Send the arduino the motor direction followed by the number of steps to move. Sleep 800ms between both
           to allow arduino to process. */
         Thread.sleep(800);
         ardFac.initial(motorDirection);

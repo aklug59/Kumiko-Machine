@@ -4,6 +4,7 @@ package View;
 
 public class ButtonFactory {
 
+    /** Make all the buttons associated with the GUI*/
     public static void makeButtons() {
 
         // Make angle buttons
