@@ -43,9 +43,9 @@
 <p>The idea for this project was born from a woodworking hobby of mine, Kumiko, a traditional Japanese woodworking craft where decorative panels are created by precisely measuring, cutting and assembling hundreds of pieces of wood into complex geometric patterns. This process is very time, labor and trial and error intensive so I wondered if a CNC (computer numerical control) inspired take on the traditional tools used in the process might make things more efficient.</p>
 <br>
 
-<img src="Images/Machine.jpg"> 
+<img src="Images/Example Panel.jpg"> 
 <p align="center">
-The final machine assembly
+A basic Kumiko panel
 
 
 
@@ -67,9 +67,10 @@ The final machine assembly
 ## Design
 
 <p>The software’s design was modeled around the Model - View - Adapter design pattern. This pattern was chosen because it allowed for clean separation of duties between the various classes of the software as well as the fact that it fit the project design requirements of having a GUI (View) and Model (Machine). Additionally, the singleton and factory design patterns were utilized to prevent issues with shared resource management between classes and class bloating respectively.<p/>
-<p> Two external libraries were utilized for the projectL<p/>
+<p> Two external libraries were utilized for the project:<p/>
 <br>
-1. <a href="https://github.com/HirdayGupta/Java-Arduino-Communication-Library">The Java Arduino Library</a> - Responsible for initliizing, maintaingina and closing serial communcations between the Arduino and the control computer.
+1. <a href="https://github.com/HirdayGupta/Java-Arduino-Communication-Library">The Java Arduino Library</a> - Responsible for initliizing, maintaining and closing serial communcations between the Arduino and the control computer.
+<br>
 <br>
 2. <a href="https://poi.apache.org/apidocs/5.0/org/apache/poi/ss/usermodel/package-summary.html">Apache POI (usermodel)</a>- Used to handle the reading and writing of data between the Java program and the excel sheet where project information would be stored in non-volatile memory.
 
