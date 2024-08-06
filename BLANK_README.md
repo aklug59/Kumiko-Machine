@@ -74,11 +74,11 @@ The idea for this project was born from a woodworking hobby of mine, Kumiko, a t
 
 ### Built With
 
-* IntelliJ Idea
+* IntelliJ IDEA
 * Java
 * Arduino
 
-* [![React][React.js]][React-url]
+* [![Apache POI (usermodel)][https://poi.apache.org/apidocs/5.0/org/apache/poi/ss/usermodel/package-summary.html]
 * [![Vue][Vue.js]][Vue-url]
 * [![Angular][Angular.io]][Angular-url]
 * [![Svelte][Svelte.dev]][Svelte-url]
