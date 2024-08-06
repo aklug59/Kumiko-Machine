@@ -71,7 +71,7 @@ The final machine assembly
 <br>
 1. <a href="https://github.com/HirdayGupta/Java-Arduino-Communication-Library">The Java Arduino Library</a> - Responsible for initliizing, maintaingina and closing serial communcations between the Arduino and the control computer.
 <br>
-2. Apache POI (usermodel) - Used to handle the reading and writing of data between the Java program and the excel sheet where project information would be stored in non-volatile memory.
+2. <a href="https://poi.apache.org/apidocs/5.0/org/apache/poi/ss/usermodel/package-summary.html">Apache POI (usermodel)</a>- Used to handle the reading and writing of data between the Java program and the excel sheet where project information would be stored in non-volatile memory.
 
 
 <!-- USAGE EXAMPLES -->
