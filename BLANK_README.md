@@ -77,11 +77,11 @@ A basic Kumiko panel
 <!-- USAGE EXAMPLES -->
 ## Pictures
 
-<h3 align="center"><img width="500" height="675" src="Images/Machine.jpg"></h3>
+<h3 align="center"><img width="800" height="675" src="Images/Machine.jpg"></h3>
 <br>
 <p align="center">
 The finished machine
-<h3 align="center"><img width="500" height="675" src="Images/Gui example picture.jpg"></h3>
+<h3 align="center"><img width="675" height="675" src="Images/Gui example picture.png"></h3>
 <p align="center">
 The GUI used to control the machine
 <br>
