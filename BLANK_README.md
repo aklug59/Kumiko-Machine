@@ -66,7 +66,13 @@ The final machine assembly
 <!-- Design -->
 ## Design
 
-The full code base, machine STL 3D printer files and parts list are all available for download in the Github.
+<p>The software’s design was modeled around the Model - View - Adapter design pattern. This pattern was chosen because it allowed for clean separation of duties between the various classes of the software as well as the fact that it fit the project design requirements of having a GUI (View) and Model (Machine). Additionally, the singleton and factory design patterns were utilized to prevent issues with shared resource management between classes and class bloating respectively.<p/>
+<br>
+<p> Two external libraries were utilized for the project<p/>
+<br>
+The Java Arduino Library - Responsible for initliizing, maintaingina and closing serial communcations between the Arduino and the control computer
+<br>
+Apache POI (usermodel) - Used to handle the reading and writing of data between the Java program and the excel sheet where project information would be stored in non-volatile memory.
 
 ### Prerequisites
 
