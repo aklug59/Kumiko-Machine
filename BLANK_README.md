@@ -75,11 +75,16 @@ A basic Kumiko panel
 
 
 <!-- USAGE EXAMPLES -->
-## OutC
+## Pictures
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+<h3 align="center"><img width="500" height="675" src="Images/Machine"></h3>
+<br>
+<p align="center">
+The finished machine
+<h3 align="center"><img width="500" height="675" src="Images/Gui example picture"></h3>
+<p align="center">
+The GUI used to control the machine
+<br>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
