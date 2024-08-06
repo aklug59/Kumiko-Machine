@@ -41,13 +41,12 @@
 ## About The Project
 
 <p>The idea for this project was born from a woodworking hobby of mine, Kumiko, a traditional Japanese woodworking craft where decorative panels are created by precisely measuring, cutting and assembling hundreds of pieces of wood into complex geometric patterns. This process is very time, labor and trial and error intensive so I wondered if a CNC (computer numerical control) inspired take on the traditional tools used in the process might make things more efficient.</p>
-
-	
 <br>
-<br>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<img src="Images/Machine.jpg">
+<img src="Images/Machine.jpg"> 
+<p align="center">
+The final machine assembly
+
 
 
 
