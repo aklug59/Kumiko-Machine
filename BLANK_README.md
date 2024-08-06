@@ -6,7 +6,7 @@
     An automated means of cutting pieces for Kumiko panels
     <br />
     <br />
-    <a href="https://www.youtube.com/watch?v=sn2D4_aM-SU&t=13s">View Demo</a>
+    <a href="https://www.youtube.com/watch?v=sn2D4_aM-SU&t=13s">VIDEO DEMO</a>
   </p>
 </div>
 
@@ -37,12 +37,14 @@ A basic Kumiko panel
 <br>
 
 
-### Built With
+
+
+### The project was built using the following tools:
 
 
 * IntelliJ IDEA
 * Java
-* Arduino
+* Arduino IDE
 * Apache POI
 * JavaArduinoLibrary
 
@@ -54,7 +56,6 @@ A basic Kumiko panel
 ## Pictures
 
 <h3 align="center"><img width="800" height="675" src="Images/Machine.jpg"></h3>
-<br>
 <p align="center">
 The finished machine
 <h3 align="center"><img width="675" height="675" src="Images/Gui example picture.png"></h3>
