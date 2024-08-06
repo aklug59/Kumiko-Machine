@@ -43,7 +43,7 @@
 <p>The idea for this project was born from a woodworking hobby of mine, Kumiko, a traditional Japanese woodworking craft where decorative panels are created by precisely measuring, cutting and assembling hundreds of pieces of wood into complex geometric patterns. This process is very time, labor and trial and error intensive so I wondered if a CNC (computer numerical control) inspired take on the traditional tools used in the process might make things more efficient.</p>
 <br>
 
-<img src="Images/Example Panel.jpg"> 
+<img src="Images/Example Panel.jpg" width="500" height="500> 
 <p align="center">
 A basic Kumiko panel
 
@@ -59,7 +59,7 @@ A basic Kumiko panel
 <br>
 <br>
 2. <a href="https://poi.apache.org/apidocs/5.0/org/apache/poi/ss/usermodel/package-summary.html">Apache POI (usermodel)</a>- Used to handle the reading and writing of data between the Java program and the excel sheet where project information would be stored in non-volatile memory.
-
+<br>
 
 
 ### Built With
@@ -76,7 +76,7 @@ A basic Kumiko panel
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## OutC
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
