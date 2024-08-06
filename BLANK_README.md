@@ -66,7 +66,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The idea for this project was born from a woodworking hobby of mine, Kumiko, a traditional Japanese woodworking craft where decorative panels are created by precisely measuring, cutting and assembling hundreds of pieces of wood into complex geometric patterns. This process is very time, labor and trial and error intensive so I wondered if a CNC (computer numerical control) inspired take on the traditional tool used in the process might make things more efficient.
+The idea for this project was born from a woodworking hobby of mine, Kumiko, a traditional Japanese woodworking craft where decorative panels are created by precisely measuring, cutting and assembling hundreds of pieces of wood into complex geometric patterns. This process is very time, labor and trial and error intensive so I wondered if a CNC (computer numerical control) inspired take on the traditional tools used in the process might make things more efficient.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -78,12 +78,8 @@ The idea for this project was born from a woodworking hobby of mine, Kumiko, a t
 * IntelliJ IDEA
 * Java
 * Arduino
-* [![Apache POI usermodel][Vue.js]][https://poi.apache.org/apidocs/5.0/org/apache/poi/ss/usermodel/package-summary.html]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* Apache POI
+* JavaArduinoLibrary
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
