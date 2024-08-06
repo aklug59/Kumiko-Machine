@@ -1,26 +1,3 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-<a id="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-
-
-
 <!-- PROJECT LOGO -->
 
 <h3 align="center">Kumiko Machine</h3>
@@ -53,9 +30,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -66,9 +40,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The idea for this project was born from a woodworking hobby of mine, Kumiko, a traditional Japanese woodworking craft where decorative panels are created by precisely measuring, cutting and assembling hundreds of pieces of wood into complex geometric patterns. This process is very time, labor and trial and error intensive so I wondered if a CNC (computer numerical control) inspired take on the traditional tools used in the process might make things more efficient.
+	The idea for this project was born from a woodworking hobby of mine, Kumiko, a traditional Japanese woodworking craft where decorative panels are created by precisely measuring, cutting and assembling hundreds of pieces of wood into complex geometric patterns. This process is very time, labor and trial and error intensive so I wondered if a CNC (computer numerical control) inspired take on the traditional tools used in the process might make things more efficient.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<img src="Images/Machine.jpg">
 
 
 
@@ -85,8 +61,8 @@ The idea for this project was born from a woodworking hobby of mine, Kumiko, a t
 
 
 
-<!-- GETTING STARTED -->
-## Getting Started
+<!-- Design -->
+## Design
 
 The full code base, machine STL 3D printer files and parts list are all available for download in the Github.
 
@@ -138,7 +114,6 @@ Project Link: [https://github.com/aklug59/Kumiko-Machine](https://github.com/akl
 
 * [Dr. Robert Yacobellis](https://github.com/ares09x)
 * [Jesse Thibault](https://www.linkedin.com/in/thibaultjessej/)
-* []()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -158,7 +133,7 @@ Project Link: [https://github.com/aklug59/Kumiko-Machine](https://github.com/akl
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[MachinePic]: Images/Machine.jpg
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
