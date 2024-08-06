@@ -49,6 +49,18 @@ A basic Kumiko panel
 
 
 
+<!-- Design -->
+## Design
+
+<p>The software’s design was modeled around the Model - View - Adapter design pattern. This pattern was chosen because it allowed for clean separation of duties between the various classes of the software as well as the fact that it fit the project design requirements of having a GUI (View) and Model (Machine). Additionally, the singleton and factory design patterns were utilized to prevent issues with shared resource management between classes and class bloating respectively.<p/>
+<p> Two external libraries were utilized for the project:<p/>
+<br>
+1. <a href="https://github.com/HirdayGupta/Java-Arduino-Communication-Library">The Java Arduino Library</a> - Responsible for initliizing, maintaining and closing serial communcations between the Arduino and the control computer.
+<br>
+<br>
+2. <a href="https://poi.apache.org/apidocs/5.0/org/apache/poi/ss/usermodel/package-summary.html">Apache POI (usermodel)</a>- Used to handle the reading and writing of data between the Java program and the excel sheet where project information would be stored in non-volatile memory.
+
+
 
 ### Built With
 
@@ -61,18 +73,6 @@ A basic Kumiko panel
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- Design -->
-## Design
-
-<p>The software’s design was modeled around the Model - View - Adapter design pattern. This pattern was chosen because it allowed for clean separation of duties between the various classes of the software as well as the fact that it fit the project design requirements of having a GUI (View) and Model (Machine). Additionally, the singleton and factory design patterns were utilized to prevent issues with shared resource management between classes and class bloating respectively.<p/>
-<p> Two external libraries were utilized for the project:<p/>
-<br>
-1. <a href="https://github.com/HirdayGupta/Java-Arduino-Communication-Library">The Java Arduino Library</a> - Responsible for initliizing, maintaining and closing serial communcations between the Arduino and the control computer.
-<br>
-<br>
-2. <a href="https://poi.apache.org/apidocs/5.0/org/apache/poi/ss/usermodel/package-summary.html">Apache POI (usermodel)</a>- Used to handle the reading and writing of data between the Java program and the excel sheet where project information would be stored in non-volatile memory.
 
 
 <!-- USAGE EXAMPLES -->
