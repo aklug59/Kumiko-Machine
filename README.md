@@ -61,6 +61,9 @@ The finished machine
 <h3 align="center"><img width="675" height="675" src="Images/Gui example picture.png"></h3>
 <p align="center">
 The GUI used to control the machine
+<h3 align="center"><img width="800" height="675" src="UML Diagram/Kumiko Machine Final UML.png"></h3>
+<p align="center">
+The final class diagram of the code base
 <br>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -70,7 +73,7 @@ The GUI used to control the machine
 <!-- CONTACT -->
 ## Contact
 
-Aidan Klug -  - aklug@luc.edu
+Aidan Klug: aklug@luc.edu
 
 Project Link: [https://github.com/aklug59/Kumiko-Machine](https://github.com/aklug59/Kumiko-Machine)
 
